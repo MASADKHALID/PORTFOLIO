@@ -488,8 +488,8 @@ nav li:first-child{
 .sixthSection .main .row4 .box,
 .sixthSection .main .row5 .box,
 .sixthSection .main .row6 .box{
-    width: 120px;
-    height: 120px;
+    width:90px;
+    height: 90px;
     text-align: center;
     border-radius: 5px;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
@@ -620,10 +620,6 @@ footer {
     gap: 15px;
   }
 
-  label {
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
 
   input,
   textarea {
