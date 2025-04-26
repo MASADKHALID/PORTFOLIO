@@ -4,8 +4,10 @@ padding: 0;
 }
 body{
 min-height: 100vh;
-
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background-image: url('images/walpaper.jpg');
+color:white;
+
 }
 
 .line{
@@ -19,6 +21,7 @@ nav{
     background-color: white;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
     width: 100%;
+    
 }
 nav ul{
     width: 100%;
@@ -206,15 +209,10 @@ nav li:first-child{
   
   /* Responsive Adjustments */
 @media (max-width: 800px) {
-    .secondSection h1{
-        margin:25px;
-    }
+    
     .mainContainer {
       flex-direction: column;
       align-items: center;
-    }
-    .secondSection h1 {
-        margin: 25px;
     }
     .bar div{
         height:10px;
@@ -488,8 +486,8 @@ nav li:first-child{
 .sixthSection .main .row4 .box,
 .sixthSection .main .row5 .box,
 .sixthSection .main .row6 .box{
-    width:90px;
-    height: 90px;
+    width:120px;
+    height: 120px;
     text-align: center;
     border-radius: 5px;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
@@ -561,7 +559,7 @@ nav li:first-child{
 }
 @media (max-width: 800px) {
     .sixthSection .main{
-        left: -35%;
+        left: -45%;
         width: 50%;
     }
 }
@@ -662,8 +660,14 @@ footer {
       justify-content: space-between;
     }
 
-    .form-section textarea{
-      width: 100%
+    input,
+    textarea {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #333;
+      color: #fff;
+      width:500px;
     }
   }
 
