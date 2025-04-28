@@ -125,6 +125,7 @@ nav li:first-child{
         text-align: center;
         width: 100%;
         text-align: left;
+        margin-top: 20px;
     }
 
     .firstSection div {
@@ -401,7 +402,7 @@ nav li:first-child{
         text-align: center;
     }
     .forthSection .filter-button {
-        padding: 10px 20px;
+        padding: 10px 5px;
         margin: 0 3px;
         cursor: pointer;
         border-radius: 30%;
