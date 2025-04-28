@@ -652,40 +652,40 @@ nav li:first-child{
     .sixthSection .main .row1{
         position: relative;
         top: 10px;
-        left:304px;
+        left:220px;
         
     }
     
     .sixthSection .main .row2{
         position: relative;
         top: -70px;
-        left:304px;
+        left:220px;
     }
     
     
     .sixthSection .main .row3{
         position: relative;
         top: -150px;
-        left:304px;
+        left:220px;
     
     }
     
     .sixthSection .main .row4{
         position: relative;
         top: -230px;
-        left:304px;
+        left:220px;
     }
     
     .sixthSection .main .row5{
         position: relative;
         top: -310px;
-        left:304px;
+        left:220px;
     }
     
     .sixthSection .main .row6{
         position: relative;
         top: -390px;
-        left:304px;
+        left:220px;
     }
 }
 
