@@ -394,6 +394,20 @@ nav li:first-child{
     }
 }
 
+@media (max-width: 500px) {
+    .forthSection .filter-button{
+        width: 17%;
+        font-size: 9px;
+        text-align: center;
+    }
+    .forthSection .filter-button {
+        padding: 10px 20px;
+        margin: 0 3px;
+        cursor: pointer;
+        border-radius: 30%;
+    }
+}
+
 /*certificates*/
 .fifthSection h1{
     margin: 60px 0px 0px 60px;
@@ -559,10 +573,122 @@ nav li:first-child{
 }
 @media (max-width: 800px) {
     .sixthSection .main{
-        left: -45%;
+        left: -88%;
         width: 50%;
     }
+    .sixthSection .main .row1 .box,
+    .sixthSection .main .row2 .box,
+    .sixthSection .main .row3 .box,
+    .sixthSection .main .row4 .box,
+    .sixthSection .main .row5 .box,
+    .sixthSection .main .row6 .box{
+        width:50px;
+        height: 90px;
+        text-align: center;
+        border-radius: 5px;
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        border: 1px solid blck;
+        transition: transform 0.3s ease-in-out;
+    }
+    .sixthSection .main .row1{
+        position: relative;
+        top: 10px;
+        left:357px;
+        
+    }
+    
+    .sixthSection .main .row2{
+        position: relative;
+        top: -17px;
+        left:357px;
+    }
+    
+    
+    .sixthSection .main .row3{
+        position: relative;
+        top: -44px;
+        left:357px;
+    
+    }
+    
+    .sixthSection .main .row4{
+        position: relative;
+        top: -71px;
+        left:357px;
+    }
+    
+    .sixthSection .main .row5{
+        position: relative;
+        top: -98px;
+        left:357px;
+    }
+    
+    .sixthSection .main .row6{
+        position: relative;
+        top: -125px;
+        left:357px;
+    }
+    
 }
+
+@media (max-width: 500px) {
+    .sixthSection .main{
+        height:290px;
+    }
+    .sixthSection .main .row1 .box,
+    .sixthSection .main .row2 .box,
+    .sixthSection .main .row3 .box,
+    .sixthSection .main .row4 .box,
+    .sixthSection .main .row5 .box,
+    .sixthSection .main .row6 .box{
+        width:50px;
+        height: 50px;
+        text-align: center;
+        border-radius: 5px;
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        border: 1px solid blck;
+        transition: transform 0.3s ease-in-out;
+    }
+    .sixthSection .main .row1{
+        position: relative;
+        top: 10px;
+        left:357px;
+        
+    }
+    
+    .sixthSection .main .row2{
+        position: relative;
+        top: -70px;
+        left:357px;
+    }
+    
+    
+    .sixthSection .main .row3{
+        position: relative;
+        top: -150px;
+        left:357px;
+    
+    }
+    
+    .sixthSection .main .row4{
+        position: relative;
+        top: -230px;
+        left:357px;
+    }
+    
+    .sixthSection .main .row5{
+        position: relative;
+        top: -310px;
+        left:357px;
+    }
+    
+    .sixthSection .main .row6{
+        position: relative;
+        top: -390px;
+        left:357px;
+    }
+}
+
 
 /*footer*/
 
