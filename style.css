@@ -18,7 +18,7 @@ color:white;
 }
 
 nav{
-    background-color: white;
+    background-color: #0a192f;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
     width: 100%;
     
@@ -39,10 +39,12 @@ nav a{
     text-decoration: none;
     display: flex;
     align-items: center;
-    color: black;
+    color: white;
 }
 nav a:hover{
-    background-color: #f0f0f0;
+    background-color: #0a192f; /* Dark navy */
+    color: #ffc461; /* Golden color text */
+    transition: 0.3s;
 }
 nav li:first-child{
     margin-right: auto;
@@ -402,7 +404,7 @@ nav li:first-child{
         text-align: center;
     }
     .forthSection .filter-button {
-        padding: 10px 5px;
+        padding: 10px 3px;
         margin: 0 3px;
         cursor: pointer;
         border-radius: 30%;
