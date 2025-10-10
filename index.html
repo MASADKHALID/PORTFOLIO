@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
+  <!-- Add attractive display and body fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -15,27 +17,27 @@
         <nav>
             <ul class="sidebar">
                 <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg></a></li>
-                <li><a href="">Home</a></li>
-                <li><a href="">Skills</a></li>
-                <li><a href="">Experience</a></li>
-                <li><a href="">Projects</a></li>
-                <li><a href="">Certificates</a></li>
-                <li><a href="">Tech & Skills</a></li>
-                <li><a href="">Contact Me</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#tech">Tech & Skills</a></li>
+                <li><a href="#contact">Contact Me</a></li>
             </ul>
             <ul>
               <li><a href="#">Muhammad Asad</a></li>
-              <li class="hideOnMobile"><a href="#">Home</a></li>
-              <li class="hideOnMobile"><a href="#">Skills</a></li>
-              <li class="hideOnMobile"><a href="">Experience</a></li>
-              <li class="hideOnMobile"><a href="#">Projects</a></li>
-              <li class="hideOnMobile"><a href="#">Tech & Skills</a></li>
-              <li class="hideOnMobile"><a href="#">Contact Me</a></li>
+              <li class="hideOnMobile"><a href="#home">Home</a></li>
+              <li class="hideOnMobile"><a href="#skills">Skills</a></li>
+              <li class="hideOnMobile"><a href="#experience">Experience</a></li>
+              <li class="hideOnMobile"><a href="#projects">Projects</a></li>
+              <li class="hideOnMobile"><a href="#tech">Tech & Skills</a></li>
+              <li class="hideOnMobile"><a href="#contact">Contact Me</a></li>
               <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 96 960 960" width="26"><path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"/></svg></a></li>
             </ul>
           </nav>
   </header>
-  <section class="firstSection">
+  <section id="home" class="firstSection">
         <div class="lefttSection"><span>I am <span class="color">Muhammad Asad</span>, a passionate and driven Software Engineering student at <span class="color">Karachi University, UBIT</span>. With a solid background in programming languages such as  <span id="pl"></span>, I have developed a diverse skill set that includes expertise in <span id="expertise"></span> . My academic journey is complemented by my role as a lecturer in <span id="parttime"></span> , where I enjoy sharing my knowledge and helping others grow in their understanding of technology.
             Additionally, I am currently expanding my expertise in data engineering through the Saylani Mass IT Training Program. My commitment to excellence and continuous learning drives me to stay at the forefront of the ever-evolving tech industry. I aspire to leverage my education and experience to make meaningful contributions to the world of software engineering.
             
@@ -45,72 +47,97 @@
             <img src="images/developer.png" alt="developer">
         </div>
   </section>
-  <section class="secondSection">
-        <h1>Skills</h1>
+  <section id="skills" class="secondSection">
+        <h1>SKILLS</h1>
         <div class="line"></div>
         <div class="mainContainer">
+          <!-- Original linear skill bars (kept for reference) -->
+          <!--
           <div class="skills-column">
-            <div class="skill-bar">
-              <div class="skill">Data Engineering</div>
-              <div class="bar">
-                <div class="data-engineering">80%</div>
-              </div>
+            ... (original linear skill bars commented out) ...
+          </div>
+          -->
+
+          <!-- Circular animated skills -->
+          <div class="circular-skills" aria-label="Skills progress">
+            <div class="skill-circle" data-percent="95">
+              <svg class="circular-chart" viewBox="0 0 36 36" role="img" aria-hidden="false">
+                <path class="circle-bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <path class="circle" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <text x="18" y="18" class="percentage">0%</text>
+              </svg>
+              <div class="skill-label">HTML</div>
             </div>
-            <div class="skill-bar">
-              <div class="skill">Python</div>
-              <div class="bar">
-                <div class="python">90%</div>
-              </div>
+
+            <div class="skill-circle" data-percent="90">
+              <svg class="circular-chart" viewBox="0 0 36 36" role="img">
+                <path class="circle-bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <path class="circle" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <text x="18" y="18" class="percentage">0%</text>
+              </svg>
+              <div class="skill-label">CSS</div>
             </div>
-            <div class="skill-bar">
-              <div class="skill">SQL</div>
-              <div class="bar">
-                <div class="sql">85%</div>
-              </div>
+
+            <div class="skill-circle" data-percent="90">
+              <svg class="circular-chart" viewBox="0 0 36 36" role="img">
+                <path class="circle-bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <path class="circle" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <text x="18" y="18" class="percentage">0%</text>
+              </svg>
+              <div class="skill-label">Python</div>
             </div>
-            <div class="skill-bar">
-              <div class="skill">Java</div>
-              <div class="bar">
-                <div class="java">80%</div>
-              </div>
+
+            <div class="skill-circle" data-percent="85">
+              <svg class="circular-chart" viewBox="0 0 36 36" role="img">
+                <path class="circle-bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <path class="circle" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <text x="18" y="18" class="percentage">0%</text>
+              </svg>
+              <div class="skill-label">SQL</div>
             </div>
-            <div class="skill-bar">
-              <div class="skill">Power BI</div>
-              <div class="bar">
-                <div class="powerbi">75%</div>
-              </div>
+
+            <div class="skill-circle" data-percent="80">
+              <svg class="circular-chart" viewBox="0 0 36 36" role="img">
+                <path class="circle-bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <path class="circle" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <text x="18" y="18" class="percentage">0%</text>
+              </svg>
+              <div class="skill-label">Java</div>
+            </div>
+
+            <div class="skill-circle" data-percent="80">
+              <svg class="circular-chart" viewBox="0 0 36 36" role="img">
+                <path class="circle-bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <path class="circle" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <text x="18" y="18" class="percentage">0%</text>
+              </svg>
+              <div class="skill-label">Data Engineering</div>
+            </div>
+
+            <div class="skill-circle" data-percent="75">
+              <svg class="circular-chart" viewBox="0 0 36 36" role="img">
+                <path class="circle-bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <path class="circle" stroke-dasharray="0,100" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <text x="18" y="20.35" class="percentage">0%</text>
+              </svg>
+              <div class="skill-label">Power BI</div>
+            </div>
+
+            <div class="skill-circle" data-percent="60">
+              <svg class="circular-chart" viewBox="0 0 36 36" role="img">
+                <path class="circle-bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <path class="circle" stroke-dasharray="0,100" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831a15.9155 15.9155 0 1 0 0-31.831"/>
+                <text x="18" y="20.35" class="percentage">0%</text>
+              </svg>
+              <div class="skill-label">UI/UX</div>
             </div>
           </div>
-          <div class="skills-column">
-            <div class="skill-bar">
-              <div class="skill">Figma</div>
-              <div class="bar">
-                <div class="figma">60%</div>
-              </div>
-            </div>
-            <div class="skill-bar">
-              <div class="skill">HTML</div>
-              <div class="bar">
-                <div class="html">95%</div>
-              </div>
-            </div>
-            <div class="skill-bar">
-              <div class="skill">CSS</div>
-              <div class="bar">
-                <div class="css">90%</div>
-              </div>
-            </div>
-            <div class="skill-bar">
-              <div class="skill">C++</div>
-              <div class="bar">
-                <div class="cpp">40%</div>
-              </div>
-            </div>
-          </div>
+
+          <!-- circular skills animation moved to script.js -->
         </div>
   </section>  
-    <!--
-    <section class="thirdSection">
+    
+  <section id="experience" class="thirdSection">
       <h1>WORK EXPERIENCE</h1>
       <div class="line"></div>
       <div class="Cantainer">
@@ -170,9 +197,9 @@
           </div>
       </div>
   </section>
--->
-  <section class="forthSection">
-        <h1>My Projects</h1>
+
+  <section id="projects" class="forthSection">
+        <h1>MY PROJECTS</h1>
         <div class="line"></div>
         <div class="button-container">
           <button class="filter-button" data-category="etl">ETL</button>
@@ -307,8 +334,8 @@
             </div>
   </section>
 
-  <section class="fifthSection">
-      <h1>Certificates</h1>
+  <section id="certificates" class="fifthSection">
+      <h1>CERTIFICATES</h1>
       <div class="line"></div>
       <div class="cantainer">
         <div class="box">
@@ -362,8 +389,8 @@
       </div>  
       </div>
   </section>
-
-  <section class="sixthSection">
+<!--
+  <section id="tech" class="sixthSection">
     <h1>Tech Stack</h1>
     <div class="line"></div>
     <div class="main">
@@ -482,8 +509,9 @@
         </div>
     </div>
   </section>
+-->
   
-  <footer>
+  <footer id="contact">
     <div class="footer-container">
       <!-- Contact Section -->
       <div class="contact-section">
