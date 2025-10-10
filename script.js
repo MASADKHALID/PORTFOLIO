@@ -1,63 +1,46 @@
-function showSidebar(){
-    const sidebar = document.querySelector('.sidebar')
-    if(!sidebar) return; // defensive
-        // ensure visible and mark open (prefer class-based toggle; fallback to inline style)
-        sidebar.classList.add('open')
-        try{ sidebar.style.display = 'flex'; }catch(e){}
-        try{ console.debug('showSidebar: sidebar opened (class added)'); }catch(e){}
-  }
-  function hideSidebar(){
-    const sidebar = document.querySelector('.sidebar')
-    if(!sidebar) return;
-        // hide via class; also clear inline style as fallback
-        sidebar.classList.remove('open')
-        try{ sidebar.style.display = 'none'; }catch(e){}
-        try{ console.debug('hideSidebar: sidebar closed (class removed)'); }catch(e){}
-  }
+// --- Mobile hamburger menu: concise, reliable behavior ---
+document.addEventListener('DOMContentLoaded', function(){
+    try{
+        const btn = document.getElementById('hamburgerBtn');
+        const mobile = document.getElementById('mobileNav');
+        if(!btn || !mobile) return;
 
-// Expose to window so inline onclick="showSidebar()" works reliably
-try{ window.showSidebar = showSidebar; window.hideSidebar = hideSidebar; }catch(e){}
+        function openMobile(){
+            mobile.classList.add('open');
+            btn.setAttribute('aria-expanded','true');
+            mobile.setAttribute('aria-hidden','false');
+        }
+        function closeMobile(){
+            mobile.classList.remove('open');
+            btn.setAttribute('aria-expanded','false');
+            mobile.setAttribute('aria-hidden','true');
+        }
 
-    // Close responsive sidebar when any in-page nav link is clicked (mobile)
-    document.addEventListener('click', function(e){
-            // Only handle on small viewports (mobile) where sidebar/menu is used
-            if(window.innerWidth > 800) return;
-            const closest = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
-            const link = closest;
-            if(!link) return;
-            // Only act for internal anchor links
-            const href = link.getAttribute('href');
-            if(!href || !href.startsWith('#')) return;
-            // If sidebar is visible (mobile), hide it
-            const sidebar = document.querySelector('.sidebar');
-            if(sidebar && getComputedStyle(sidebar).display !== 'none'){
-                    // hide immediately; anchor default navigation will still work
-                    hideSidebar();
-            }
-    });
+        btn.addEventListener('click', function(e){
+            if(mobile.classList.contains('open')) closeMobile(); else openMobile();
+        });
 
-    // Ensure hamburger and sidebar close anchors don't navigate to '#' and reliably toggle
-    document.addEventListener('DOMContentLoaded', function(){
-        try{
-            const menuBtnAnchor = document.querySelector('.menu-button a');
-            const menuBtnLi = document.querySelector('.menu-button');
-            // attach to both the li and the anchor to be defensive against markup differences
-            if(menuBtnAnchor){
-                menuBtnAnchor.addEventListener('click', function(evt){ evt.preventDefault(); showSidebar(); });
-            }
-            if(menuBtnLi){
-                menuBtnLi.addEventListener('click', function(evt){ evt.preventDefault && evt.preventDefault(); showSidebar(); });
-            }
-            const sidebar = document.querySelector('.sidebar');
-            if(sidebar){
-                const firstLi = sidebar.querySelector('li');
-                if(firstLi){
-                    const closeA = firstLi.querySelector('a');
-                    if(closeA){ closeA.addEventListener('click', function(evt){ evt.preventDefault(); hideSidebar(); }); }
+        // When a mobile nav link is clicked: navigate to section and close the menu
+        mobile.addEventListener('click', function(e){
+            const a = e.target.closest('a[href^="#"]');
+            if(!a) return;
+            e.preventDefault();
+            const href = a.getAttribute('href');
+            if(href && href.startsWith('#')){
+                const target = document.querySelector(href);
+                if(target){
+                    // smooth scroll and close
+                    target.scrollIntoView({behavior:'smooth', block:'start'});
                 }
             }
-        }catch(err){ /* non-fatal */ }
-    });
+            // close menu after navigation
+            closeMobile();
+        });
+
+        // close on escape
+        document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMobile(); });
+    }catch(err){ console.debug('mobile menu init failed', err); }
+});
 
   const filterButtons = document.querySelectorAll('.filter-button');
   const projectBoxes = document.querySelectorAll('.forthSection .cantainer .box');
@@ -82,6 +65,15 @@ try{ window.showSidebar = showSidebar; window.hideSidebar = hideSidebar; }catch(
           });
       });
   });
+  // Visual active state handling for filter buttons
+  function setActiveButton(activeBtn){
+      filterButtons.forEach(b => b.classList.remove('active'));
+      if(activeBtn) activeBtn.classList.add('active');
+  }
+  // initialize default active (ETL)
+  const defaultBtn = Array.from(filterButtons).find(b => b.dataset.category === 'etl');
+  if(defaultBtn){ setActiveButton(defaultBtn); defaultBtn.click(); }
+  filterButtons.forEach(btn => btn.addEventListener('click', ()=> setActiveButton(btn)));
 
         // --- Circular skills animation (moved from inline HTML) ---
         document.addEventListener('DOMContentLoaded', function(){
@@ -258,5 +250,112 @@ try{ window.showSidebar = showSidebar; window.hideSidebar = hideSidebar; }catch(
 
         window.addEventListener('resize', buildStack);
         document.addEventListener('DOMContentLoaded', buildStack);
+    })();
+
+    // Reusable stacked deck builder for other sections (e.g., certificates)
+    (function(){
+        const breakpoint = 800;
+        function buildCertStack(){
+            const container = document.querySelector('.fifthSection .cantainer');
+            if(!container) return;
+
+            const existingDeck = container.querySelector('.stack-deck');
+            if(window.innerWidth > breakpoint){
+                if(existingDeck){
+                    try{ if(existingDeck._autoId) clearInterval(existingDeck._autoId); }catch(e){}
+                    try{ if(existingDeck._handlers){ for(const k in existingDeck._handlers){ const fn = existingDeck._handlers[k]; if(fn) existingDeck.removeEventListener(k.replace(/^on/,'').toLowerCase(), fn); } } }catch(e){}
+                    existingDeck.remove();
+                }
+                return;
+            }
+
+            if(existingDeck) return; // already built
+
+            // For certificates, each .box acts like a card
+            const boxNodes = Array.from(container.querySelectorAll('.box'));
+            if(boxNodes.length === 0) return;
+
+            const deck = document.createElement('div'); deck.className = 'stack-deck';
+            const queue = boxNodes.map(n => n.cloneNode(true));
+
+            function renderDeck(){
+                deck.innerHTML = '';
+                const slice = queue.slice(0, Math.min(queue.length, 6));
+                slice.forEach(clonedNode => {
+                    const card = document.createElement('div'); card.className = 'card';
+                    const node = clonedNode.cloneNode(true);
+                    // move inner content to card
+                    while(node.firstChild){ card.appendChild(node.firstChild); }
+                    deck.appendChild(card);
+                });
+            }
+
+            container.insertBefore(deck, container.firstChild);
+            renderDeck();
+
+            // Reuse gesture logic from experience stack (lightweight copy)
+            let startY = 0, isDragging=false, topCard=null;
+
+            function onPointerDown(e){
+                topCard = deck.querySelector('.card');
+                if(!topCard) return;
+                const targetCard = e.target.closest('.card');
+                if(targetCard !== topCard) return;
+                isDragging = true; startY = e.clientY || (e.touches && e.touches[0].clientY);
+                topCard.classList.add('dragging');
+                if(e.cancelable) e.preventDefault();
+                if(e.pointerId) topCard.setPointerCapture && topCard.setPointerCapture(e.pointerId);
+            }
+
+            function onPointerMove(e){
+                if(!isDragging || !topCard) return;
+                const y = e.clientY || (e.touches && e.touches[0].clientY);
+                const dy = y - startY;
+                const translate = Math.min(0, dy);
+                const rot = Math.max(-8, translate / 20);
+                const scale = 1 + translate / 2000;
+                topCard.style.transform = `translateX(-50%) translateY(${translate}px) rotate(${rot}deg) scale(${scale})`;
+                topCard.style.opacity = `${Math.max(0.15, 1 + translate/300)}`;
+                if(e.cancelable) e.preventDefault();
+            }
+
+            function revealTopCard(){
+                const card = deck.querySelector('.card');
+                if(!card) return;
+                card.classList.add('revealed');
+                card.style.transform = 'translateX(-50%) translateY(-160%) rotate(-10deg) scale(0.98)';
+                card.style.opacity = '0';
+                card.style.pointerEvents = 'none';
+                const cleanup = () => { card.removeEventListener('transitionend', cleanup); const item = queue.shift(); queue.push(item); renderDeck(); };
+                card.addEventListener('transitionend', cleanup);
+                setTimeout(() => { try { cleanup(); } catch(e){} }, 600);
+            }
+
+            function onPointerUp(e){
+                if(!isDragging) return; isDragging=false;
+                if(topCard){ topCard.classList.remove('dragging'); topCard.style.transform='translateX(-50%)'; topCard.style.opacity=''; try{ topCard.releasePointerCapture && topCard.releasePointerCapture(e.pointerId); }catch(err){} }
+                const y = e.clientY || (e.changedTouches && e.changedTouches[0].clientY) || startY;
+                const dy = y - startY;
+                if(dy < -40){ revealTopCard(); }
+            }
+
+            deck.addEventListener('pointerdown', onPointerDown);
+            deck.addEventListener('pointermove', onPointerMove);
+            deck.addEventListener('pointerup', onPointerUp);
+            deck.addEventListener('pointercancel', onPointerUp);
+            deck.addEventListener('touchstart', onPointerDown, {passive:false});
+            deck.addEventListener('touchmove', onPointerMove, {passive:false});
+            deck.addEventListener('touchend', onPointerUp);
+
+            // auto-advance
+            let auto = setInterval(revealTopCard, 4200);
+            deck._autoId = auto;
+            deck._handlers = { onPointerDown, onPointerMove, onPointerUp };
+            deck.addEventListener('pointerenter', ()=> clearInterval(auto));
+            deck.addEventListener('pointerleave', ()=> { clearInterval(auto); auto = setInterval(revealTopCard, 4200); deck._autoId = auto; });
+        }
+
+        window.addEventListener('resize', buildCertStack);
+        document.addEventListener('DOMContentLoaded', buildCertStack);
     })();
 
