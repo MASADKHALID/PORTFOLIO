@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function(){
   filterButtons.forEach(button => {
       button.addEventListener('click', () => {
           const category = button.dataset.category;
-  
+
           projectBoxes.forEach(box => {
               if (category === 'all' || box.classList.contains(category)) {
                   box.style.display = 'block';
@@ -74,6 +74,8 @@ document.addEventListener('DOMContentLoaded', function(){
   const defaultBtn = Array.from(filterButtons).find(b => b.dataset.category === 'etl');
   if(defaultBtn){ setActiveButton(defaultBtn); defaultBtn.click(); }
   filterButtons.forEach(btn => btn.addEventListener('click', ()=> setActiveButton(btn)));
+
+  // Projects deck removed: projects will display as grid only (mobile stack removed)
 
         // --- Circular skills animation (moved from inline HTML) ---
         document.addEventListener('DOMContentLoaded', function(){

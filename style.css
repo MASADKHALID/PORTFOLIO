@@ -58,7 +58,12 @@ nav a{
     text-decoration: none;
     display: flex;
     align-items: center;
-    color: white;
+    /* match the H1 gradient text treatment used for Work Experience */
+    background: linear-gradient(90deg,#7be8ff 0%, #8be58a 50%, #ffc461 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #fff; /* fallback for non-supporting browsers */
 }
 nav a:hover{
     background-color: #0a192f; /* Dark navy */
@@ -546,28 +551,31 @@ nav li:first-child{
     overflow: hidden;
     border-radius: 30px;
 }
+.forthSection .cantainer .box {
+    display: flex;
+    flex-direction: column-reverse; /* description above image */
+    align-items: stretch;
+    justify-content: flex-start;
+}
 .forthSection .cantainer img {
-    height: 100%;
     width: 100%;
-    object-fit: fill;
+    height: auto;
+    object-fit: cover;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 .forthSection .cantainer .description {
-    position: absolute;
-    bottom: -100%; /* Start hidden below the box */
-    left: 0;
+    position: relative;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    color: white;
-    padding: 20px;
+    padding: 12px 14px;
     box-sizing: border-box;
-    transition: bottom 0.4s ease-in-out;
+    background: transparent;
+    color: #0b1220;
     font-size: 14px;
+    text-align: left;
 }
-
-.forthSection .cantainer .box:hover .description {
-    bottom: 0; /* Moves up inside the box on hover */
-}
+.forthSection .cantainer .description p{ color: #333; margin-bottom: 10px }
+.forthSection .cantainer .description button{ display:inline-block; margin: 0 auto; padding: 8px 12px; border-radius: 8px; background:#ffc461; color:#072033; border:0; cursor:pointer }
 
 
 /* ... the rest of your existing CSS ... */
@@ -590,6 +598,8 @@ nav li:first-child{
         justify-content:center;
     }
 }
+
+
 
 @media (max-width: 500px) {
     .forthSection .filter-button{
