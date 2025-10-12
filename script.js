@@ -42,82 +42,48 @@ document.addEventListener('DOMContentLoaded', function(){
     }catch(err){ console.debug('mobile menu init failed', err); }
 });
 
-  const filterButtons = document.querySelectorAll('.filter-button');
-  const projectBoxes = document.querySelectorAll('.forthSection .cantainer .box');
-  
-  // Initially hide all boxes except ETL
-  projectBoxes.forEach(box => {
-      if (!box.classList.contains('etl')) {
-          box.style.display = 'none';
-      }
-  });
-  
-  filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-          const category = button.dataset.category;
 
-          projectBoxes.forEach(box => {
-              if (category === 'all' || box.classList.contains(category)) {
-                  box.style.display = 'block';
-              } else {
-                  box.style.display = 'none';
-              }
-          });
-      });
-  });
-  // Visual active state handling for filter buttons
-  function setActiveButton(activeBtn){
-      filterButtons.forEach(b => b.classList.remove('active'));
-      if(activeBtn) activeBtn.classList.add('active');
-  }
-  // initialize default active (ETL)
-  const defaultBtn = Array.from(filterButtons).find(b => b.dataset.category === 'etl');
-  if(defaultBtn){ setActiveButton(defaultBtn); defaultBtn.click(); }
-  filterButtons.forEach(btn => btn.addEventListener('click', ()=> setActiveButton(btn)));
+    // --- Circular skills animation (moved from inline HTML) ---
+    document.addEventListener('DOMContentLoaded', function(){
+        const circles = document.querySelectorAll('.circular-skills .skill-circle');
+        const duration = 1000;
+        const easeOutCubic = t => (--t)*t*t+1;
 
-  // Projects deck removed: projects will display as grid only (mobile stack removed)
+        function animateCircle(circle){
+            const target = Math.max(0, Math.min(100, parseInt(circle.getAttribute('data-percent'),10) || 0));
+            const svgCircle = circle.querySelector('.circle');
+            const text = circle.querySelector('.percentage');
+            const start = performance.now();
 
-        // --- Circular skills animation (moved from inline HTML) ---
-        document.addEventListener('DOMContentLoaded', function(){
-            const circles = document.querySelectorAll('.circular-skills .skill-circle');
-            const duration = 1000;
-            const easeOutCubic = t => (--t)*t*t+1;
+            const pathLength = svgCircle.getTotalLength();
+            svgCircle.setAttribute('stroke-dasharray', pathLength);
+            svgCircle.setAttribute('stroke-dashoffset', pathLength);
 
-            function animateCircle(circle){
-                const target = Math.max(0, Math.min(100, parseInt(circle.getAttribute('data-percent'),10) || 0));
-                const svgCircle = circle.querySelector('.circle');
-                const text = circle.querySelector('.percentage');
-                const start = performance.now();
+            requestAnimationFrame(function frame(now){
+                const elapsed = now - start;
+                const progress = Math.min(1, elapsed / duration);
+                const eased = easeOutCubic(progress);
+                const pct = eased * target / 100; // 0..1
+                const offset = Math.max(0, pathLength * (1 - pct));
+                svgCircle.setAttribute('stroke-dashoffset', offset);
+                text.textContent = Math.round(eased * target) + '%';
+                if(progress < 1) requestAnimationFrame(frame);
+            });
+        }
 
-                const pathLength = svgCircle.getTotalLength();
-                svgCircle.setAttribute('stroke-dasharray', pathLength);
-                svgCircle.setAttribute('stroke-dashoffset', pathLength);
+        function onScroll(){
+            circles.forEach(c => {
+                const rect = c.getBoundingClientRect();
+                if(rect.top < window.innerHeight && rect.bottom >= 0 && !c.dataset.animated){
+                    c.dataset.animated = '1';
+                    animateCircle(c);
+                }
+            });
+        }
 
-                requestAnimationFrame(function frame(now){
-                    const elapsed = now - start;
-                    const progress = Math.min(1, elapsed / duration);
-                    const eased = easeOutCubic(progress);
-                    const pct = eased * target / 100; // 0..1
-                    const offset = Math.max(0, pathLength * (1 - pct));
-                    svgCircle.setAttribute('stroke-dashoffset', offset);
-                    text.textContent = Math.round(eased * target) + '%';
-                    if(progress < 1) requestAnimationFrame(frame);
-                });
-            }
-
-            function onScroll(){
-                circles.forEach(c => {
-                    const rect = c.getBoundingClientRect();
-                    if(rect.top < window.innerHeight && rect.bottom >= 0 && !c.dataset.animated){
-                        c.dataset.animated = '1';
-                        animateCircle(c);
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', onScroll, {passive:true});
-            onScroll();
-        });
+        window.addEventListener('scroll', onScroll, {passive:true});
+        onScroll();
+    });
 
 
     /* Mobile carousel removed: slide elements are no longer generated. */
@@ -360,4 +326,32 @@ document.addEventListener('DOMContentLoaded', function(){
         window.addEventListener('resize', buildCertStack);
         document.addEventListener('DOMContentLoaded', buildCertStack);
     })();
+
+    // --- Projects section: filter buttons logic ---
+    document.addEventListener('DOMContentLoaded', function(){
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const projectSection = document.querySelector('#projects');
+        const projectCards = projectSection.querySelectorAll('.box');
+
+        // Show only ETL projects by default
+        projectCards.forEach(card => {
+            if (!card.classList.contains('etl')) {
+                card.style.display = 'none';
+            }
+        });
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const category = button.dataset.category;
+
+                projectCards.forEach(card => {
+                    if (category === 'all' || card.classList.contains(category)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
 

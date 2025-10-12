@@ -22,17 +22,23 @@ body{
 nav svg path { fill: #ffffff; stroke: #ffffff; }
 
 /* Section headings style */
-h1 {
+/* Section heading base: apply to section > h1 (keeps consistency across sections) */
+.section-h1,
+section > h1 {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 28px;
-    margin: 24px 0 8px 24px;
+    margin: 60px 0 0 60px; /* match experience/other sections */
+    text-align: left;
     background: linear-gradient(90deg,#7be8ff 0%, #8be58a 50%, #ffc461 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: #fff; /* fallback */
 }
+
+/* Keep generic h1 for other contexts (e.g., page title) but inherit from section rules when inside a section */
+h1 { font-family: inherit; }
 
 /* Slightly dim secondary text to keep focus on headings */
 body, p, span, .organization, .desc { color: #D7E6F7; }
@@ -491,128 +497,78 @@ nav li:first-child{
     .fifthSection .cantainer .stack-deck .card:not(:first-child) img { visibility: visible; }
 }
 
-/*projects*/
-/* ... your existing CSS ... */
+/* Projects CSS removed (section deleted from HTML) */
 
-.forthSection h1{
-    margin: 60px 0px 0px 60px;
-    text-align: left;
-    font-size:larger;
+/* Hover effect for filler buttons */
+.filter-button:hover {
+    transform: scale(1.1); /* Slight zoom effect */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
 }
+
+/* Projects: responsive button container and cards */
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap; /* allow buttons to wrap on small screens */
+  margin: 12px 0 18px;
+}
+
+.button-container .filter-button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(37,117,252,0.12);
+  transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+}
+
+.button-container .filter-button:active {
+  transform: scale(.98);
+}
+
+.forthSection {
+  text-align: center;
+}
+
+.forthSection h1 {
+  margin-bottom: 6px;
+}
+
 .forthSection .button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin: 20px 24px;
-    flex-wrap: wrap; /* allow wrapping on narrow screens */
+  max-width: 1100px; /* constrain width so buttons stay centered */
+  margin: 0 auto 18px; /* center horizontally and add bottom spacing */
 }
 
-.forthSection .filter-button {
-    padding: 8px 18px;
-    margin: 6px 6px;
-    cursor: pointer;
-    border-radius: 999px; /* pill */
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.06);
-    color: #E8EEF6;
-    font-weight: 600;
-    letter-spacing: 0.2px;
-    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
-    box-shadow: 0 4px 10px rgba(2,8,20,0.35);
-}
-.forthSection .filter-button:hover{
-    transform: translateY(-4px);
-    background: rgba(255,255,255,0.06);
-}
-.forthSection .filter-button:focus{ outline: none; box-shadow: 0 6px 18px rgba(123,232,255,0.12); }
-.forthSection .filter-button.active{
-    background: linear-gradient(90deg,#7be8ff 0%, #8be58a 50%);
-    color: #072033;
-    border-color: rgba(0,0,0,0.05);
-    box-shadow: 0 8px 24px rgba(123,232,255,0.12);
+/* Constrain the cards grid so it stays centered on large screens */
+.cantainer {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.forthSection .cantainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 10px;
+/* Make filter buttons more usable on small screens */
+.filter-button {
+  min-width: 96px;
 }
 
-.forthSection .cantainer .box {
-    background-color: white;
-    height: 200px;
-    width: 250px;
-    margin: 10px;
-    border: 2px solid purple;
-    position: relative;
-    overflow: hidden;
-    border-radius: 30px;
-}
-.forthSection .cantainer .box {
-    display: flex;
-    flex-direction: column-reverse; /* description above image */
-    align-items: stretch;
-    justify-content: flex-start;
-}
-.forthSection .cantainer img {
+@media (max-width: 480px) {
+  .forthSection .button-container { padding-left: 10px; padding-right: 10px; }
+  .forthSection .button-container { width: 100%; }
+  .forthSection .button-container .filter-button {
     width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-}
-.forthSection .cantainer .description {
-    position: relative;
-    width: 100%;
-    padding: 12px 14px;
+    max-width: 420px;
     box-sizing: border-box;
-    background: transparent;
-    color: #0b1220;
-    font-size: 14px;
-    text-align: left;
-}
-.forthSection .cantainer .description p{ color: #333; margin-bottom: 10px }
-.forthSection .cantainer .description button{ display:inline-block; margin: 0 auto; padding: 8px 12px; border-radius: 8px; background:#ffc461; color:#072033; border:0; cursor:pointer }
-
-
-/* ... the rest of your existing CSS ... */
-
-/* Responsive Design */
-@media (max-width: 800px) {
-    .forthSection .cantainer .box {
-        width: 70%;
-        height:400px;
-        border-radius: 30px;
-    }
-    .forthSection .button-container{
-        width: 95%;
-        padding: 0px;
-        margin:0px;
-        justify-content: center;
-    }
-    .forthSection .cantainer{
-        width: 100%;
-        justify-content:center;
-    }
+  }
 }
 
-
-
-@media (max-width: 500px) {
-    .forthSection .filter-button{
-        width: 17%;
-        font-size: 9px;
-        text-align: center;
-    }
-    .forthSection .filter-button {
-        padding: 10px 3px;
-        margin: 0 3px;
-        cursor: pointer;
-        border-radius: 30%;
-    }
+/* Accessibility: visible focus for keyboard users */
+.filter-button:focus {
+  outline: 3px solid rgba(37,117,252,0.28);
+  outline-offset: 3px;
 }
 
 /*certificates*/
@@ -1071,5 +1027,79 @@ footer {
     /* small-screen tweaks for footer and form elements */
     .footer-container { padding: 12px; gap: 12px; }
     input, textarea { width: 100% !important; }
+}
+
+/* Center the project cards container */
+.cantainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Add spacing between cards */
+    padding: 20px;
+}
+
+/* Make the Projects section responsive */
+@media (max-width: 768px) {
+    .cantainer {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .box {
+        width: 100%; /* Make project cards take full width on smaller screens */
+        max-width: 400px;
+    }
+}
+
+/* Education section styles */
+.educationSection {
+  padding: 36px 18px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+}
+
+.educationSection .education-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 1100px;
+  margin: 18px auto 0 auto;
+  padding: 6px;
+}
+
+/* Match the h1 treatment used site-wide (and for Work Experience) */
+.educationSection h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: larger;
+    margin: 24px 0 8px 24px;
+    background: linear-gradient(90deg,#7be8ff 0%, #8be58a 50%, #ffc461 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #fff; /* fallback */
+}
+
+.edu-card {
+  background: #0f1724;
+  color: #fff;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 10px 22px rgba(2,6,23,0.6);
+  text-align: left;
+}
+
+.edu-card h3 { margin: 0 0 6px 0; font-size: 18px; }
+.edu-school { font-weight: 600; color: #cbd5e1; }
+.edu-year { color: #9aa4b2; margin-top: 8px; }
+
+@media (max-width: 900px) {
+  .educationSection .education-container { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .educationSection .education-container { grid-template-columns: 1fr; padding-left: 12px; padding-right: 12px; }
+  .edu-card { text-align: left; }
 }
 
