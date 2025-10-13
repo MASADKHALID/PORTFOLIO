@@ -210,7 +210,359 @@
       </div>
 </section>
 
-<!-- Projects section removed -->
+<!-- Projects section - re-added with local images, ETL default filter, and improved hover -->
+  <section id="projects" class="projects-section">
+    <h1>MY PROJECTS</h1>
+    <div class="line"></div>
+
+    <style>
+      /* Scoped projects styles (keeps global stylesheet untouched) */
+      .projects-section{padding:40px 20px;max-width:1200px;margin:0 auto}
+      .projects-section h1{margin-top:0}
+      .filters-container{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:24px}
+      .filter-btn{background:transparent;border:2px solid #0b66ff;color:#0b66ff;padding:8px 16px;border-radius:20px;cursor:pointer;font-weight:600;transition:all .25s}
+      .filter-btn.active{background:#0b66ff;color:#fff;box-shadow:0 6px 18px rgba(11,102,255,.18);transform:translateY(-3px)}
+
+      .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;justify-items:center}
+      .project-card{position:relative;overflow:hidden;border-radius:10px;box-shadow:0 6px 20px rgba(2,6,23,.08);background:#fff;width:100%;aspect-ratio:4/3;transition:transform .28s}
+      .project-card:hover{transform:translateY(-6px)}
+  /* Hide filtered-out cards */
+  .project-card.hidden{display:none !important}
+
+      .project-image-container{width:100%;height:100%}
+      .project-image-container img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+      .project-card:hover .project-image-container img{transform:scale(1.06)}
+
+      .project-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.6) 100%);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;gap:8px;opacity:0;transform:translateY(12px);transition:all .28s ease}
+      .project-card:hover .project-overlay{opacity:1;transform:translateY(0)}
+
+      .project-title{font-weight:700;margin:0 0 4px 0}
+      .project-description{font-size:.95rem;margin:0 0 8px 0;line-height:1.2}
+
+      .github-link{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:#111;color:#fff;border-radius:6px;text-decoration:none;border:2px solid transparent;font-weight:600}
+      .github-link:hover{background:#222}
+
+      @media (max-width:992px){.projects-grid{grid-template-columns:repeat(2,1fr)}}
+      @media (max-width:576px){.projects-grid{grid-template-columns:1fr}.filter-btn{padding:8px 12px}}
+    </style>
+
+
+
+    <div class="filters-container" role="toolbar" aria-label="Project filters">
+      <button class="filter-btn active" data-filter="etl">ETL</button>
+      <button class="filter-btn" data-filter="data-analyst">Data Analyst</button>
+      <button class="filter-btn" data-filter="programming">Programming</button>
+      <button class="filter-btn" data-filter="uiux">UI/UX</button>
+      <button class="filter-btn" data-filter="web-development">Web Development</button>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- 3 - ETL (default visible) -->
+      <div class="project-card" data-category="etl">
+        <div class="project-image-container">
+          <img src="images/ELT_PROJECT.png" alt="ETL Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">ETL Pipeline</h3>
+            <p class="project-description">Visual ETL architecture diagram for data ingestion &amp; transformation.</p>
+          </div>
+          <a class="github-link" href="images/ETL_WEATHER_API_AUTOMATED_PIPLINE.drawio.png" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="etl">
+        <div class="project-image-container">
+          <img src="images/ETL_WEATHER_API_AUTOMATED_PIPLINE.drawio.png" alt="ETL Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">ETL WEATHER API AUTOMATED PIPELINE</h3>
+            <p class="project-description">Weather API ETL pipeline: scheduled ingestion, transform, and load.</p>
+          </div>
+          <a class="github-link" href="images/etlproject2.png" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="etl">
+        <div class="project-image-container">
+          <img src="images/etlproject2.png" alt="ETL Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">ETL PIPLINE</h3>
+            <p class="project-description">Automated pipeline example showcasing batch processing and transformations.</p>
+          </div>
+          <a class="github-link" href="images/nasa_etl_pipline.drawio (2).png" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="etl">
+        <div class="project-image-container">
+          <img src="images/nasa_etl_pipline.drawio (2).png" alt="ETL Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">nasa etl pipline</h3>
+            <p class="project-description">NASA ETL pipeline diagram: sensor data ingestion, processing, and storage.</p>
+          </div>
+          <a class="github-link" href="images/spotify.png" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="etl">
+        <div class="project-image-container">
+          <img src="images/spotify.png" alt="ETL Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">SPOTIFY ETL PIPELINE</h3>
+            <p class="project-description">Spotify ETL demo: ingesting streaming data from the Spotify API.</p>
+          </div>
+          <a class="github-link" href="images/webscrapetlzmen.PNG" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="etl">
+        <div class="project-image-container">
+          <img src="images/webscrapetlzmen.PNG" alt="ETL Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">ETL PIPELINE</h3>
+            <p class="project-description">Web scraping + ETL: scraping, parsing and loading results into a database.</p>
+          </div>
+          <a class="github-link" href="images/eventdrivenarchitectureproject2.drawio.png" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="etl">
+        <div class="project-image-container">
+          <img src="images/eventdrivenarchitectureproject2.drawio.png" alt="ETL Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">ETL PIPELINE</h3>
+            <p class="project-description">Event-driven architecture diagram for streaming ETL and microservices.</p>
+          </div>
+          <a class="github-link" href="images/ELT_PROJECT.png" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+      
+      
+      
+
+      <!-- 2 - Data Analyst -->
+      <div class="project-card" data-category="data-analyst">
+        <div class="project-image-container">
+          <img src="images/hotels_project_eda.drawio.png" alt="Data Analysis Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">HOTELS EDA</h3>
+            <p class="project-description">Hotels EDA: occupancy patterns and revenue analysis using Pandas and visualizations.</p>
+          </div>
+          <a class="github-link" href="images/hotels_project_eda.drawio.png" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="data-analyst">
+        <div class="project-image-container">
+          <img src="images/webscrapetlzmen.PNG" alt="Data Analysis Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">ZAMEEN.COM EDA</h3>
+            <p class="project-description">Web data EDA: scraped dataset cleaned and analyzed for insights.</p>
+          </div>
+          <a class="github-link" href="images/webscrapetlzmen.PNG" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      
+
+      <!-- 4 - Programming -->
+      <div class="project-card" data-category="programming">
+        <div class="project-image-container">
+          <img src="images/calculator.PNG" alt="Programming Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">calculator</h3>
+            <p class="project-description">A calculator app demonstrating UI and arithmetic logic (JS/HTML/CSS).</p>
+          </div>
+          <a class="github-link" href="images/calculator.PNG" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="programming">
+        <div class="project-image-container">
+          <img src="images/tictactoe.PNG" alt="Programming Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">TIC TAC TOE</h3>
+            <p class="project-description">Tic Tac Toe game with game-state management and player vs player mode.</p>
+          </div>
+          <a class="github-link" href="images/tictactoe.PNG" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="programming">
+        <div class="project-image-container">
+          <img src="images/rockpapersis.PNG" alt="Programming Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">ROCK PAPER SICESSORS</h3>
+            <p class="project-description">Rock–Paper–Scissors game implementation with score tracking.</p>
+          </div>
+          <a class="github-link" href="images/rockpapersis.PNG" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="programming">
+        <div class="project-image-container">
+          <img src="images/PMS.PNG" alt="Programming Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">PHARMACY MANAGEMNET SYSTEM</h3>
+            <p class="project-description">Pharmacy Management System: inventory and sales CRUD operations.</p>
+          </div>
+          <a class="github-link" href="images/PMS.PNG" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <!-- 5 - UI/UX -->
+      <div class="project-card" data-category="uiux">
+        <div class="project-image-container">
+          <img src="images/uiux1.PNG" alt="UI/UX Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">HIRE ME APP DEIGN</h3>
+            <p class="project-description">Hiring app prototype (Figma) focused on user flows and accessibility.</p>
+          </div>
+          <a class="github-link" href="images/uiux1.PNG" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="uiux">
+        <div class="project-image-container">
+          <img src="images/uiux2.PNG" alt="UI/UX Project">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">CAR APP DEIGN</h3>
+            <p class="project-description">Car app design prototype highlighting navigation and micro-interactions.</p>
+          </div>
+          <a class="github-link" href="images/uiux2.PNG" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <!-- 6 - Web Dev (landing) -->
+      <div class="project-card" data-category="web-development">
+        <div class="project-image-container">
+          <img src="images/PORTFOLIO.PNG" alt="WEB Development">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">PORTFOLIO</h3>
+            <p class="project-description">Personal portfolio site showcasing projects, built with HTML/CSS/JS.</p>
+          </div>
+          <a class="github-link" href="images/PORTFOLIO.PNG" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="web-development">
+        <div class="project-image-container">
+          <img src="images/PORTFOLIO.PNG" alt="WEB Development">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">PORTFOLIO</h3>
+            <p class="project-description">Static, SEO-friendly landing page with optimized assets.</p>
+          </div>
+          <a class="github-link" href="images/PORTFOLIO.PNG" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="web-development">
+        <div class="project-image-container">
+          <img src="images/PORTFOLIO.PNG" alt="WEB Development">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">PORTFOLIO</h3>
+            <p class="project-description">Static, SEO-friendly landing page with optimized assets.</p>
+          </div>
+          <a class="github-link" href="images/PORTFOLIO.PNG" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="web-development">
+        <div class="project-image-container">
+          <img src="images/PORTFOLIO.PNG" alt="WEB Development">
+        </div>
+        <div class="project-overlay">
+          <div>
+            <h3 class="project-title">PORTFOLIO</h3>
+            <p class="project-description">Static, SEO-friendly landing page with optimized assets.</p>
+          </div>
+          <a class="github-link" href="images/spotify.png" target="_blank" rel="noopener">View Image</a>
+        </div>
+      </div>
+
+
+    </div>
+
+    <script>
+      // Filtering + default ETL active
+      (function(){
+        const filterButtons = document.querySelectorAll('#projects .filter-btn');
+        const projectCards = document.querySelectorAll('#projects .project-card');
+
+        function applyFilter(filterValue){
+          projectCards.forEach(card=>{
+            const cat = card.getAttribute('data-category');
+            if(filterValue === 'all' || cat === filterValue){
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        }
+
+        // Set ETL as default
+        const defaultFilter = 'etl';
+        filterButtons.forEach(btn=>btn.classList.remove('active'));
+        const btn = document.querySelector('#projects .filter-btn[data-filter="' + defaultFilter + '"]');
+        if(btn) btn.classList.add('active');
+        applyFilter(defaultFilter);
+
+        // Make filter buttons accessible: set aria-pressed and add keyboard activation
+        filterButtons.forEach(button=>{
+          button.setAttribute('role','button');
+          button.setAttribute('tabindex','0');
+          // initialize aria-pressed
+          button.setAttribute('aria-pressed', button.classList.contains('active') ? 'true' : 'false');
+
+          function activate(){
+            const filter = button.getAttribute('data-filter');
+            filterButtons.forEach(b=>{ b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
+            button.classList.add('active');
+            button.setAttribute('aria-pressed','true');
+            requestAnimationFrame(()=>applyFilter(filter));
+          }
+
+          button.addEventListener('click', activate);
+          button.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
+        });
+      })();
+    </script>
+  </section>
 
   <section id="education" class="educationSection">
     <h1>EDUCATION</h1>
@@ -409,8 +761,8 @@
         </div>
     </div>
   </section>
+
 -->
-  
   <footer id="contact">
     <div class="footer-container">
       <!-- Contact Section -->

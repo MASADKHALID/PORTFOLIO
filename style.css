@@ -645,8 +645,11 @@ nav li:first-child{
     height: 600px;
     padding-top: 20px;
     position: relative;
-    left: 5%;
-    margin-right: 95px;
+    width: 1200px;       /* preferred content width for hexagon layout */
+    max-width: 100%;     /* allow shrinking on narrow viewports */
+    margin: 0 auto;      /* center the main container horizontally */
+    left: auto;          /* ensure no left offset interferes */
+    margin-right: 0;
 }
 .sixthSection .main .row1,
 .sixthSection .main .row2,
@@ -739,13 +742,6 @@ nav li:first-child{
     left:357px;
 }
 @media (max-width: 800px) {
-    .sixthSection .main{
-        left: -50%;
-        width: 100%;
-        margin: 0 auto;
-        padding: 0 12px;
-        box-sizing: border-box;
-    }
     .sixthSection .main .row1 .box,
     .sixthSection .main .row2 .box,
     .sixthSection .main .row3 .box,
@@ -777,9 +773,7 @@ nav li:first-child{
 }
 
 @media (max-width: 500px) {
-    .sixthSection .main{
-        height:290px;
-    }
+    /* keep .sixthSection .main identical across breakpoints (centered), don't override here */
     .sixthSection .main .row1 .box,
     .sixthSection .main .row2 .box,
     .sixthSection .main .row3 .box,
