@@ -431,7 +431,7 @@ nav li:first-child{
         position: absolute;
         width: 86%;
         max-width: 420px;
-        height: calc(min(86vw, 420px));
+        height: calc(min(86vw, 520px));
         /*aspect-ratio: 1 / 1;*/
         background: rgba(8,18,30,0.96);
         border-radius: 14px;
@@ -479,7 +479,7 @@ nav li:first-child{
     .fifthSection .cantainer { padding: 20px 12px; min-height: 420px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
     .fifthSection .cantainer .box { display:none; } /* hide original boxes when deck is active */
     .fifthSection .cantainer .stack-deck { width: 100%; height: calc(100vh * 0.65); max-height:820px; display:flex; align-items:center; justify-content:center; perspective:1000px; }
-    .fifthSection .cantainer .stack-deck .card { position: absolute; width: 86%; max-width:420px; height: calc(min(86vw, 420px)); background: rgba(8,18,30,0.96); border-radius:14px; box-shadow:0 20px 40px rgba(0,0,0,0.6); padding:16px; display:flex; flex-direction:column; gap:8px; left:50%; transform:translateX(-50%); }
+    .fifthSection .cantainer .stack-deck .card { position: absolute; width: 86%; max-width:420px; height: calc(min(86vw, 520px)); background: rgba(8,18,30,0.96); border-radius:14px; box-shadow:0 20px 40px rgba(0,0,0,0.6); padding:16px; display:flex; flex-direction:column; gap:8px; left:50%; transform:translateX(-50%); }
     .fifthSection .cantainer .stack-deck .card:nth-child(1){ transform: translateX(-50%) translateY(0) scale(1); z-index: 30; }
     .fifthSection .cantainer .stack-deck .card:nth-child(2){ transform: translateX(-50%) translateY(12px) scale(0.985); z-index: 20; }
     .fifthSection .cantainer .stack-deck .card:nth-child(3){ transform: translateX(-50%) translateY(24px) scale(0.97); z-index: 10; }
@@ -489,7 +489,18 @@ nav li:first-child{
 
     /* Show only image for cards behind the top—keep full content for :first-child */
     .fifthSection .cantainer .stack-deck .card { overflow: hidden; }
+    /* Back cards: fill the card so they look like thumbnails
+       Top (first) card: show image contained at the top so the content (links/buttons) below remain visible */
     .fifthSection .cantainer .stack-deck .card img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+    .fifthSection .cantainer .stack-deck .card:first-child img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: 56%; /* allow room for title/desc and action links */
+        object-fit: contain;
+        margin: 0 auto 12px auto;
+        border-radius: 8px;
+    }
     .fifthSection .cantainer .stack-deck .card:not(:first-child) {
         padding: 0; /* remove inner padding so image can fill */
     }
@@ -628,6 +639,7 @@ nav li:first-child{
     .fifthSection .cantainer .box {
         width: 70%;
         height:400px;
+        min-height: 460px; /* increase mobile card height for better readability */
         border-radius: 30px;
     }
     .fifthSection .cantainer{
@@ -942,7 +954,7 @@ footer {
 
     /* Projects / Certificates: make boxes fluid */
     .forthSection .cantainer .box,
-    .fifthSection .cantainer .box { width: 92%; height: auto; max-height: none; }
+    .fifthSection .cantainer .box { width: 92%; height: auto; max-height: none; min-height: 420px; }
     .forthSection .cantainer .box img,
     .fifthSection .cantainer .box img { width: 100%; height: auto; object-fit: cover; }
 

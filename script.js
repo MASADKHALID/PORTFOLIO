@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function(){
         window.addEventListener('resize', buildStack);
         document.addEventListener('DOMContentLoaded', buildStack);
     })();
-
+    
     // Reusable stacked deck builder for other sections (e.g., certificates)
     (function(){
         const breakpoint = 800;
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function(){
             }
 
             if(existingDeck) return; // already built
-
+            
             // For certificates, each .box acts like a card
             const boxNodes = Array.from(container.querySelectorAll('.box'));
             if(boxNodes.length === 0) return;
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
             container.insertBefore(deck, container.firstChild);
             renderDeck();
-
+            
             // Reuse gesture logic from experience stack (lightweight copy)
             let startY = 0, isDragging=false, topCard=null;
 
