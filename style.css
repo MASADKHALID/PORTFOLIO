@@ -600,25 +600,28 @@ nav li:first-child{
 .fifthSection .cantainer .box img {
     height: 100%;
     width: 100%;
-    object-fit: fill;
+    object-fit: cover; /* ensure image fills box while preserving aspect */
 }
 
 .fifthSection .cantainer .box .description {
     position: absolute;
-    bottom: -100%; /* Start hidden below the box */
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    color: white;
-    padding: 20px;
+    inset: 0; /* top:0; right:0; bottom:0; left:0 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(100%); /* start hidden below */
+    background-color: rgba(0, 0, 0, 0.72);
+    color: #fff;
+    padding: 18px;
     box-sizing: border-box;
-    transition: bottom 0.4s ease-in-out;
+    transition: transform 360ms cubic-bezier(.22,.9,.22,1), opacity 260ms ease;
     font-size: 14px;
+    text-align: center;
 }
 
 .fifthSection .cantainer .box:hover .description {
-    bottom: 0; /* Moves up inside the box on hover */
+    transform: translateY(0); /* slide up into view */
 }
 
 @media (max-width: 800px) {
