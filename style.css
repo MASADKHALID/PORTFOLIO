@@ -634,199 +634,143 @@ nav li:first-child{
 
     
 }
-/*Tech Stack*/
-.sixthSection h1{
-    margin: 60px 0px 0px 60px;
-    text-align: left;
-    font-size:larger;
-}
+/*tech stack*/
 
-.sixthSection .main{
-    height: 600px;
-    padding-top: 20px;
-    position: relative;
-    width: 1200px;       /* preferred content width for hexagon layout */
-    max-width: 100%;     /* allow shrinking on narrow viewports */
-    margin: 0 auto;      /* center the main container horizontally */
-    left: auto;          /* ensure no left offset interferes */
-    margin-right: 0;
-}
-.sixthSection .main .row1,
-.sixthSection .main .row2,
-.sixthSection .main .row3,
-.sixthSection .main .row4,
-.sixthSection .main .row5,
-.sixthSection .main .row6{
-    display: flex;
-    justify-content: center;
-    height: 120px;
-    width: 600px;
-    
-}
+.tech-section {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-.sixthSection .main .row1 .box,
-.sixthSection .main .row2 .box,
-.sixthSection .main .row3 .box,
-.sixthSection .main .row4 .box,
-.sixthSection .main .row5 .box,
-.sixthSection .main .row6 .box{
-    width:120px;
-    height: 120px;
-    text-align: center;
-    border-radius: 5px;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    border: 1px solid blck;
-    transition: transform 0.3s ease-in-out;
-}
-
-.sixthSection .main .row1 .box:hover,
-.sixthSection .main .row2 .box:hover,
-.sixthSection .main .row3 .box:hover,
-.sixthSection .main .row4 .box:hover,
-.sixthSection .main .row5 .box:hover,
-.sixthSection .main .row6 .box:hover{
-    transform: scale(1.2);
-
-}
-
-.sixthSection .main .row1 .box img,
-.sixthSection .main .row2 .box img,
-.sixthSection .main .row3 .box img,
-.sixthSection .main .row4 .box img,
-.sixthSection .main .row5 .box img,
-.sixthSection .main .row6 .box img{
-    height: 100%;
-    width: 100%;
-    object-fit: fill;
-}
-
-
-
-/*top change +29*/
-.sixthSection .main .row1{
-    position: relative;
-    top: 10px;
-    left:357px;
-    
-}
-
-.sixthSection .main .row2{
-    position: relative;
-    top: -17px;
-    left:357px;
-}
-
-
-.sixthSection .main .row3{
-    position: relative;
-    top: -44px;
-    left:357px;
-
-}
-
-.sixthSection .main .row4{
-    position: relative;
-    top: -71px;
-    left:357px;
-}
-
-.sixthSection .main .row5{
-    position: relative;
-    top: -98px;
-    left:357px;
-}
-
-.sixthSection .main .row6{
-    position: relative;
-    top: -125px;
-    left:357px;
-}
-@media (max-width: 800px) {
-    .sixthSection .main .row1 .box,
-    .sixthSection .main .row2 .box,
-    .sixthSection .main .row3 .box,
-    .sixthSection .main .row4 .box,
-    .sixthSection .main .row5 .box,
-    .sixthSection .main .row6 .box{
-        width:50px;
-        height: 90px;
-        text-align: center;
-        border-radius: 5px;
-        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        border: 1px solid blck;
-        transition: transform 0.3s ease-in-out;
-    }
-    .sixthSection .main .row1,
-    .sixthSection .main .row2,
-    .sixthSection .main .row3,
-    .sixthSection .main .row4,
-    .sixthSection .main .row5,
-    .sixthSection .main .row6{
-        position: static;
-        top: auto;
-        left: auto;
-        margin: 8px 0;
-        width: 100%;
-        justify-content: center;
-    }
-    
-}
-
-@media (max-width: 500px) {
-    /* keep .sixthSection .main identical across breakpoints (centered), don't override here */
-    .sixthSection .main .row1 .box,
-    .sixthSection .main .row2 .box,
-    .sixthSection .main .row3 .box,
-    .sixthSection .main .row4 .box,
-    .sixthSection .main .row5 .box,
-    .sixthSection .main .row6 .box{
-        width:50px;
-        height: 50px;
-        text-align: center;
-        border-radius: 5px;
-        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        border: 1px solid blck;
-        transition: transform 0.3s ease-in-out;
-    }
-    .sixthSection .main .row1{
-        position: relative;
-        top: 10px;
-        left:220px;
+        .tech-section h2 {
+            font-size: 3em;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #00bcd4; /* Cyan Accent */
+        }
         
-    }
-    
-    .sixthSection .main .row2{
-        position: relative;
-        top: -75px;
-        left:220px;
-    }
-    
-    
-    .sixthSection .main .row3{
-        position: relative;
-        top: -158px;
-        left:220px;
-    
-    }
-    
-    .sixthSection .main .row4{
-        position: relative;
-        top: -240px;
-        left:220px;
-    }
-    
-    .sixthSection .main .row5{
-        position: relative;
-        top: -326px;
-        left:220px;
-    }
-    
-    .sixthSection .main .row6{
-        position: relative;
-        top: -410px;
-        left:220px;
-    }
-}
+        .stack-label {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            color: #9ca3af;
+            font-weight: 400;
+        }
+
+        /* --- Stack Diagram Container --- */
+        .stack-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border: 1px solid #3e445b;
+            border-radius: 12px;
+            padding: 20px;
+            background-color: #0f0f1b; /* Very dark inner background */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- Component/Layer Styling --- */
+        .stack-layer {
+            background-color: #272c4a;
+            padding: 15px;
+            border-radius: 8px;
+            position: relative;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stack-layer:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 15px rgba(0, 188, 212, 0.3);
+        }
+
+        .layer-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #79f7ff; /* Lighter Cyan */
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-bottom: 5px;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-pill {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            white-space: nowrap; /* Ensures pills don't break mid-word */
+        }
+
+        .tech-pill i {
+            margin-right: 6px;
+            font-size: 1.1em;
+        }
+        
+        .tech-pill:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* --- Layer Color Themes (Custom colors for better separation) --- */
+        
+        /* Frontend & Mobile */
+        .frontend-pill { background-color: #ff5733; color: white; } /* Orange-Red */
+        .frontend-pill:hover { background-color: #cc4527; }
+        
+        /* Backend & Core */
+        .backend-pill { background-color: #4CAF50; color: white; } /* Green */
+        .backend-pill:hover { background-color: #3b823e; }
+
+        /* Data & Intelligence */
+        .data-pill { background-color: #9c27b0; color: white; } /* Purple */
+        .data-pill:hover { background-color: #7b1fa2; }
+
+        /* Cloud & Infrastructure */
+        .cloud-pill { background-color: #00bcd4; color: #1a1a2e; } /* Cyan */
+        .cloud-pill:hover { background-color: #0097a7; }
+
+        /* Software & Productivity */
+        .productivity-pill { background-color: #ff9800; color: white; } /* Amber/Gold */
+        .productivity-pill:hover { background-color: #fb8c00; }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 600px) {
+            .tech-section h2 {
+                font-size: 2em;
+            }
+            .stack-label {
+                font-size: 1em;
+                margin-bottom: 25px;
+            }
+            .stack-diagram {
+                padding: 10px;
+            }
+            .stack-layer {
+                padding: 10px;
+            }
+            .layer-title {
+                font-size: 1em;
+            }
+            .tech-list {
+                justify-content: flex-start; /* Keep left alignment, but wrap */
+                gap: 6px;
+            }
+            .tech-pill {
+                font-size: 0.75em;
+                padding: 5px 10px;
+            }
+        }
 
 /* Circular skills: added minimal, non-invasive styles */
 .circular-skills{
@@ -999,8 +943,7 @@ footer {
     .forthSection .cantainer .box img,
     .fifthSection .cantainer .box img { width: 100%; height: auto; object-fit: cover; }
 
-    /* Tech stack: make grid flow vertically */
-    .sixthSection .main { width: 100%; left: auto; padding: 12px; }
+    /* Tech stack: only adjust row/box layout on small screens; keep `.sixthSection .main` untouched so desktop styles persist */
     .sixthSection .main .row1,
     .sixthSection .main .row2,
     .sixthSection .main .row3,
