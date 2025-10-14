@@ -11,12 +11,7 @@ body{
     color: #E8EEF6; /* soft off-white for better contrast */
 }
 
-.line{
-    margin: 15px;
-    height: 1px;
-    width: auto;
-    background-color: #D0D4CA;
-}
+/* .line is intentionally mapped later to .section-line; initial placeholder removed */
 
 /* Make inline SVG icons (menu/hamburger) white */
 nav svg path { fill: #ffffff; stroke: #ffffff; }
@@ -200,11 +195,7 @@ nav li:first-child{
     text-align: center;
   }
   
-.secondSection h1 {
-    margin: 60px 0px 0px 60px;
-    text-align: left;
-    font-size:larger;
-}
+/* section headings are controlled globally via section h1 / .section-line */
   
 
   
@@ -279,11 +270,7 @@ nav li:first-child{
 
 /*experience*/
 
-.thirdSection h1{
-    margin-left: 60px;
-    text-align: left;
-    font-size:larger;
-}
+/* per-section h1 rules removed - global styles apply */
 
 .thirdSection .Cantainer{
     display: flex;
@@ -583,11 +570,46 @@ nav li:first-child{
 }
 
 /*certificates*/
-.fifthSection h1{
-    margin: 60px 0px 0px 60px;
-    text-align: left;
-    font-size:larger;
+.section-heading {
+    font-family: 'Poppins', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    color: #00bcd4; /* cyan accent to match tech pills */
+    font-size: 28px; /* consistent heading size */
+    font-weight: 700;
+    text-align: center;
+    margin: 48px 0 8px 0; /* centered headings */
+    letter-spacing: 0.4px;
 }
+
+.section-line {
+    height: 2px;
+    width: 80%;
+    max-width: 900px;
+    background: linear-gradient(90deg, rgba(0,188,212,0.9), rgba(37,117,252,0.6));
+    margin: 8px auto 20px;
+    border-radius: 2px;
+}
+
+/* Keep existing HTML using class="line" visually identical to .section-line */
+.line {
+    height: 2px;
+    width: 80%;
+    max-width: 900px;
+    background: linear-gradient(90deg, rgba(0,188,212,0.9), rgba(37,117,252,0.6));
+    margin: 8px auto 20px;
+    border-radius: 2px;
+}
+
+/* Mobile-friendly overrides: center headings and reduce left margin for small screens */
+@media (max-width: 800px) {
+    section h1, section h2 { text-align: center; margin: 24px 0 8px 0; }
+    .line, .section-line { width: calc(100% - 32px); margin: 8px auto 20px; }
+}
+
+/* Apply to common heading tags inside sections */
+section h1, section h2 { all: unset; }
+section h1, section h2 { display: block; font-family: 'Poppins', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color: #00bcd4; font-size: 28px; font-weight:700; text-align:center; margin:48px 0 8px 0; letter-spacing:0.4px; }
+
+/* global section heading styles apply to certificates */
 
 .fifthSection .cantainer {
     display: flex;
@@ -1021,17 +1043,7 @@ footer {
 }
 
 /* Match the h1 treatment used site-wide (and for Work Experience) */
-.educationSection h1 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: larger;
-    margin: 24px 0 8px 24px;
-    background: linear-gradient(90deg,#7be8ff 0%, #8be58a 50%, #ffc461 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: #fff; /* fallback */
-}
+/* education headings use global section heading styles */
 
 .edu-card {
   background: #0f1724;
