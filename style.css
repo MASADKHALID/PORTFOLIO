@@ -118,7 +118,7 @@ nav li:first-child{
 
 /* Header layout helpers */
 .main-nav{ display:flex; align-items:center; position:relative; padding:8px 16px; }
-.main-nav .nav-left{ margin-right: auto; font-weight:700; padding-left:8px }
+.main-nav .nav-left{ margin-right: auto; font-weight:700; padding-left:8px; width: 250px; }
 .main-nav .nav-right{ display:flex; gap:8px; align-items:center }
 
 @media(max-width: 800px){
@@ -667,6 +667,9 @@ section h1, section h2 { display: block; font-family: 'Poppins', 'Inter', system
     .fifthSection .cantainer{
         width: 100%;
         justify-content:center;
+    }
+    .fifthSection .cantainer .box p{
+        font-size: 10px;
     }
 
     
