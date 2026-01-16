@@ -90,6 +90,53 @@ document.addEventListener('DOMContentLoaded', () => {
     applyFilter('etl');
 })();
 
+// --- Bio rotating text loop (typewriter effect for #pl, #expertise, #parttime) ---
+document.addEventListener('DOMContentLoaded', () => {
+    const targets = [
+        { id: 'pl', phrases: ['Python', 'Java', 'C++', 'SQL', 'HTML/CSS', 'JavaScript'] },
+        { id: 'expertise', phrases: ['ETL Pipelines', 'Data Engineering', 'Web Development', 'Database Administration', 'EDA & Visualization'] },
+        { id: 'parttime', phrases: ['Computer Science', 'Physics', 'Programming'] }
+    ];
+
+    function typeLoop(el, phrases, speed = 85, backSpeed = 45, pause = 3000){
+        if(!el || !phrases || phrases.length === 0) return;
+        let i = 0, text = '', deleting = false;
+
+        const step = () => {
+            const full = phrases[i];
+            if(!deleting){
+                text = full.slice(0, text.length + 1);
+                el.textContent = text;
+                if(text === full){
+                    deleting = true;
+                    setTimeout(step, pause);
+                    return;
+                }
+                setTimeout(step, speed);
+            } else {
+                text = full.slice(0, Math.max(0, text.length - 1));
+                el.textContent = text;
+                if(text.length === 0){
+                    deleting = false;
+                    i = (i + 1) % phrases.length;
+                    setTimeout(step, speed);
+                    return;
+                }
+                setTimeout(step, backSpeed);
+            }
+        };
+        step();
+    }
+
+    targets.forEach((cfg, idx) => {
+        const el = document.getElementById(cfg.id);
+        // Much slower typing/deleting and longer pause; staggered starts
+        setTimeout(() => {
+            typeLoop(el, cfg.phrases, 240, 120, 5000);
+        }, idx * 1000);
+    });
+});
+
 // --- Mobile stacked deck for experience timeline ---
 (function(){
     const breakpoint = 800;
@@ -131,6 +178,17 @@ document.addEventListener('DOMContentLoaded', () => {
         renderDeck();
 
         let startY = 0, isDragging=false, topCard=null;
+        let auto = null;
+        
+        const startAutoRotation = () => {
+            if(auto) clearInterval(auto);
+            auto = setInterval(() => {
+                clearInterval(auto); // Stop timer immediately when fired
+                revealTopCard();
+            }, 8500);
+            deck._autoId = auto;
+        };
+        
         const revealTopCard = () => {
             const card = deck.querySelector('.card');
             if(!card) return;
@@ -138,7 +196,13 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transform = 'translateX(-50%) translateY(-160%) rotate(-10deg) scale(0.98)';
             card.style.opacity = '0';
             card.style.pointerEvents = 'none';
-            const cleanup = () => { card.removeEventListener('transitionend', cleanup); const item = queue.shift(); queue.push(item); renderDeck(); };
+            const cleanup = () => { 
+                card.removeEventListener('transitionend', cleanup); 
+                const item = queue.shift(); 
+                queue.push(item); 
+                renderDeck();
+                setTimeout(() => startAutoRotation(), 100); // Wait a bit then start fresh timer
+            };
             card.addEventListener('transitionend', cleanup);
             setTimeout(() => { try { cleanup(); } catch(e){} }, 600);
         };
@@ -197,11 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
         deck.addEventListener('touchmove', onPointerMove, {passive:false});
         deck.addEventListener('touchend', onPointerUp);
 
-        let auto = setInterval(revealTopCard, 4200);
-        deck._autoId = auto;
+        startAutoRotation();
         deck._handlers = { onPointerDown, onPointerMove, onPointerUp };
-        deck.addEventListener('pointerenter', () => clearInterval(auto));
-        deck.addEventListener('pointerleave', () => { clearInterval(auto); auto = setInterval(revealTopCard, 4200); deck._autoId = auto; });
+        deck.addEventListener('pointerenter', () => { if(auto) clearInterval(auto); });
+        deck.addEventListener('pointerleave', startAutoRotation);
     }
 
     window.addEventListener('resize', buildStack);
@@ -246,6 +309,17 @@ document.addEventListener('DOMContentLoaded', () => {
             renderDeck();
 
             let startY = 0, isDragging=false, topCard=null;
+            let auto = null;
+            
+            const startAutoRotation = () => {
+                if(auto) clearInterval(auto);
+                auto = setInterval(() => {
+                    clearInterval(auto); // Stop timer immediately when fired
+                    revealTopCard();
+                }, 8500);
+                deck._autoId = auto;
+            };
+            
             const revealTopCard = () => {
                 const card = deck.querySelector('.card');
                 if(!card) return;
@@ -253,7 +327,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.transform = 'translateX(-50%) translateY(-160%) rotate(-10deg) scale(0.98)';
                 card.style.opacity = '0';
                 card.style.pointerEvents = 'none';
-                const cleanup = () => { card.removeEventListener('transitionend', cleanup); const item = queue.shift(); queue.push(item); renderDeck(); };
+                const cleanup = () => { 
+                    card.removeEventListener('transitionend', cleanup); 
+                    const item = queue.shift(); 
+                    queue.push(item); 
+                    renderDeck();
+                    setTimeout(() => startAutoRotation(), 100); // Wait a bit then start fresh timer
+                };
                 card.addEventListener('transitionend', cleanup);
                 setTimeout(() => { try { cleanup(); } catch(e){} }, 600);
             };
@@ -312,11 +392,10 @@ document.addEventListener('DOMContentLoaded', () => {
             deck.addEventListener('touchmove', onPointerMove, {passive:false});
             deck.addEventListener('touchend', onPointerUp);
 
-            let auto = setInterval(revealTopCard, 4200);
-            deck._autoId = auto;
+            startAutoRotation();
             deck._handlers = { onPointerDown, onPointerMove, onPointerUp };
-            deck.addEventListener('pointerenter', () => clearInterval(auto));
-            deck.addEventListener('pointerleave', () => { clearInterval(auto); auto = setInterval(revealTopCard, 4200); deck._autoId = auto; });
+            deck.addEventListener('pointerenter', () => { if(auto) clearInterval(auto); });
+            deck.addEventListener('pointerleave', startAutoRotation);
         });
     }
 

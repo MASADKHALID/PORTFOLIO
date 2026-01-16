@@ -38,24 +38,41 @@ h1 { font-family: inherit; }
 /* Slightly dim secondary text to keep focus on headings */
 body, p, span, .organization, .desc { color: #D7E6F7; }
 
+/* Sticky header for desktop */
+header { position: sticky; top: 0; z-index: 1400; }
+
 nav{
     background-color: rgba(6,18,32,0.85);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    backdrop-filter: saturate(140%) blur(8px);
     box-shadow: 0 6px 18px rgba(2,8,20,0.6);
     width: 100%;
 }
+
+/* Centered inner container for desktop */
+.nav-inner{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 nav ul{
     width: 100%;
     list-style: none;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    gap: 6px;
 }
 nav li{
-    height: 50px;
+    height: 48px;
 }
 nav a{
     height: 100%;
-    padding: 0 30px;
+    padding: 0 16px; /* tighter spacing to fit desktop */
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -65,11 +82,15 @@ nav a{
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: #fff; /* fallback for non-supporting browsers */
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
 }
 nav a:hover{
-    background-color: #0a192f; /* Dark navy */
+    background-color: rgba(10,25,47,0.6); /* subtle hover, keeps fit */
     color: #ffc461; /* Golden color text */
-    transition: 0.3s;
+    transition: 0.2s ease;
+    border-radius: 8px;
 }
 nav li:first-child{
     margin: 4px 6px;
@@ -117,9 +138,10 @@ nav li:first-child{
 .mobile-nav a:hover{ background: rgba(255,255,255,0.03); color:#ffc461 }
 
 /* Header layout helpers */
-.main-nav{ display:flex; align-items:center; position:relative; padding:8px 16px; }
-.main-nav .nav-left{ margin-right: auto; font-weight:700; padding-left:8px; width: 250px; }
-.main-nav .nav-right{ display:flex; gap:10px; align-items:center }
+.main-nav{ display:block; position:relative; }
+.main-nav .nav-left{ margin-right: auto; font-weight:800; padding-left:8px; width: auto; }
+.main-nav .nav-left .brand{ font-size: 15px; letter-spacing: 0.5px; }
+.main-nav .nav-right{ display:flex; gap:8px; align-items:center; flex-wrap: wrap; }
 
 @media(max-width: 800px){
     .hideOnMobile{ display: none; }
@@ -239,6 +261,12 @@ nav li:first-child{
     padding-right: 10px;
     position: relative;
     transition: width 0.5s ease-in-out;
+}
+
+/* Make circular skills progress draw clockwise */
+.circular-skills .circle {
+    transform: scale(-1, 1);
+    transform-origin: 50% 50%;
 }
   
   /* Skill Bar Colors and Widths */
