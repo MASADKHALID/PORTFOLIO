@@ -165,11 +165,6 @@ nav li:first-child{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 40px 60px;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 .firstSection div {
@@ -217,12 +212,8 @@ nav li:first-child{
 }
 /*skills*/
 .secondSection {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 40px 60px;
+    padding: 40px 20px;
     text-align: center;
-    width: 100%;
-    box-sizing: border-box;
   }
   
 /* section headings are controlled globally via section h1 / .section-line */
@@ -313,11 +304,6 @@ nav li:first-child{
     justify-content: center;
     height: 200px; /* increased height for more space */
     min-height: 200px;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0 60px;
 }
 
 .experienceLine{
@@ -657,11 +643,7 @@ section h1, section h2 { display: block; font-family: 'Poppins', 'Inter', system
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    padding: 40px 60px;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-    box-sizing: border-box;
+    padding: 10px;
 }
 
 .fifthSection .cantainer .box {
@@ -722,12 +704,8 @@ section h1, section h2 { display: block; font-family: 'Poppins', 'Inter', system
 /*tech stack*/
 
 .tech-section {
-            padding: 60px 60px;
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 60px 20px;
             text-align: center;
-            width: 100%;
-            box-sizing: border-box;
         }
 
         .tech-section h2 {
@@ -903,17 +881,14 @@ section h1, section h2 { display: block; font-family: 'Poppins', 'Inter', system
 footer {
     background-color: #1a1a1a;
     color: #fff;
-    padding: 40px 60px;
+    padding: 40px 20px;
     margin-top: 30px;
-    width: 100%;
-    box-sizing: border-box;
 }
 
   .footer-container {
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
-    max-width: 1400px;
     margin: 0 auto;
     flex-direction: column-reverse;
   }
@@ -1252,6 +1227,27 @@ footer {
 
   .cv-option:hover {
     padding-left: 20px;
+  }
+}
+
+/* ===== DESKTOP ONLY: Max-width constraints ===== */
+@media (min-width: 1200px) {
+  .firstSection,
+  .secondSection,
+  .thirdSection .Cantainer,
+  .fifthSection .cantainer,
+  .educationSection,
+  .tech-section,
+  footer {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  
+  .footer-container {
+    max-width: 1400px;
   }
 }
 

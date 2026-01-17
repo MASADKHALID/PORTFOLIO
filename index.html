@@ -280,8 +280,14 @@
 
     <style>
       /* Scoped projects styles (keeps global stylesheet untouched) */
-      .projects-section{padding:40px 60px;max-width:1400px;margin:0 auto;width:100%;box-sizing:border-box}
+      .projects-section{padding:40px 20px;margin:0 auto}
       .projects-section h1{margin-top:0}
+      
+      /* Desktop only max-width */
+      @media (min-width: 1200px) {
+        .projects-section{max-width:1400px;padding:40px 60px}
+      }
+      
       .filters-container{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:24px}
       .filter-btn{background:transparent;border:2px solid #0b66ff;color:#0b66ff;padding:8px 16px;border-radius:20px;cursor:pointer;font-weight:600;transition:all .25s}
       .filter-btn.active{background:#0b66ff;color:#fff;box-shadow:0 6px 18px rgba(11,102,255,.18);transform:translateY(-3px)}
