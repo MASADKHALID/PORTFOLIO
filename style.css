@@ -842,12 +842,11 @@ section h1, section h2 { display: block; font-family: 'Poppins', 'Inter', system
 
 /* Circular skills: added minimal, non-invasive styles */
 .circular-skills{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 skills per row on desktop */
+    gap: 30px 20px;
+    justify-items: center;
+    max-width: 800px;
     margin: 0 auto;
     padding: 18px 20px;
 }
@@ -859,10 +858,19 @@ section h1, section h2 { display: block; font-family: 'Poppins', 'Inter', system
 .skill-label{ margin-top:8px; color: #D0D4CA; font-size: 14px; }
 
 @media (max-width: 800px){
-    .circular-skills{ gap: 14px; }
+    .circular-skills{ 
+        grid-template-columns: repeat(3, 1fr); /* 3 per row on tablet */
+        gap: 14px; 
+    }
     .circular-chart{ width: 84px; height: 84px; }
     .skill-circle{ width: 120px; }
     .circular-chart .percentage{ font-size: 10px; }
+}
+
+@media (max-width: 600px){
+    .circular-skills{ 
+        grid-template-columns: repeat(2, 1fr); /* 2 per row on mobile */
+    }
 }
 
 @media (prefers-reduced-motion: reduce){
