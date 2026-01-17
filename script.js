@@ -403,3 +403,68 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('DOMContentLoaded', buildStacks);
 })();
 
+// ===== CV MENU BUTTON FUNCTIONALITY =====
+document.addEventListener('DOMContentLoaded', () => {
+    const cvBtn = document.getElementById('cvMenuButton');
+    const cvMenu = document.getElementById('cvMenu');
+    const cvOptions = document.querySelectorAll('.cv-option');
+
+    if (!cvBtn || !cvMenu) return;
+
+    // Toggle menu visibility
+    cvBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        cvMenu.classList.toggle('active');
+        cvBtn.classList.toggle('active');
+    });
+
+    // Handle CV option clicks
+    cvOptions.forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.preventDefault();
+            const role = option.getAttribute('data-role');
+            downloadCV(role);
+            
+            // Close menu after selection
+            cvMenu.classList.remove('active');
+            cvBtn.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!cvBtn.contains(e.target) && !cvMenu.contains(e.target)) {
+            cvMenu.classList.remove('active');
+            cvBtn.classList.remove('active');
+        }
+    });
+
+    // Close menu on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            cvMenu.classList.remove('active');
+            cvBtn.classList.remove('active');
+        }
+    });
+});
+
+// CV Download function
+function downloadCV(role) {
+    // Map roles to file names
+    const fileMap = {
+        'data-analyst': 'cv/Muhammad_Asad_Khalid_JR_Data_Engineer_&_Analyst.pdf',
+        'data-engineer': 'cv/Muhammad_Asad_Khalid_JR_Data_Engineer_&_Analyst.pdf',
+        'sqa': 'cv/CV_SQA.pdf',
+        'software-engineer': 'cv/Muhammad_Asad_Khalid_Software_Engineer.pdf'
+    };
+
+    const fileName = fileMap[role];
+    if (!fileName) {
+        console.error('Invalid role selected');
+        return;
+    }
+
+    // Open CV in new tab
+    window.open(fileName, '_blank');
+}
+

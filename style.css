@@ -1098,3 +1098,126 @@ footer {
   .edu-card { text-align: left; }
 }
 
+/* ===== CV MENU BUTTON STYLES ===== */
+.cv-menu-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 80px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #7be8ff, #8be58a);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(123, 232, 255, 0.3);
+  transition: all 0.3s ease;
+  z-index: 1300;
+}
+
+.cv-menu-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(123, 232, 255, 0.5);
+}
+
+.cv-menu-btn:active {
+  transform: scale(0.95);
+}
+
+.arrow-icon {
+  width: 24px;
+  height: 24px;
+  color: #081725;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.cv-menu-btn.active .arrow-icon {
+  transform: rotate(180deg);
+}
+
+/* CV Menu Dropdown */
+.cv-menu-dropdown {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: rgba(8, 23, 37, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(123, 232, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  padding: 12px 0;
+  min-width: 200px;
+  transform: translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1299;
+}
+
+.cv-menu-dropdown.active {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cv-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cv-menu-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.cv-option {
+  display: block;
+  padding: 12px 20px;
+  color: #7be8ff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.cv-option:hover {
+  background-color: rgba(123, 232, 255, 0.1);
+  border-left-color: #7be8ff;
+  padding-left: 24px;
+  color: #ffc461;
+}
+
+.cv-option:active {
+  background-color: rgba(123, 232, 255, 0.2);
+}
+
+/* Mobile responsive */
+@media (max-width: 576px) {
+  .cv-menu-btn {
+    width: 44px;
+    height: 44px;
+    right: 15px;
+    bottom: 70px;
+  }
+
+  .cv-menu-dropdown {
+    right: 15px;
+    bottom: 15px;
+    min-width: 180px;
+  }
+
+  .cv-option {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .cv-option:hover {
+    padding-left: 20px;
+  }
+}
+
