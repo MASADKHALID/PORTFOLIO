@@ -165,7 +165,9 @@ nav li:first-child{
     display: flex;
     justify-content: space-around;
     align-items: center;
-
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
 .firstSection div {
@@ -213,7 +215,9 @@ nav li:first-child{
 }
 /*skills*/
 .secondSection {
-    /*padding: 40px 20px;*/
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
     text-align: center;
   }
   
@@ -305,6 +309,8 @@ nav li:first-child{
     justify-content: center;
     height: 200px; /* increased height for more space */
     min-height: 200px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .experienceLine{
@@ -645,6 +651,8 @@ section h1, section h2 { display: block; font-family: 'Poppins', 'Inter', system
     justify-content: center;
     gap: 20px;
     padding: 10px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .fifthSection .cantainer .box {
@@ -706,7 +714,7 @@ section h1, section h2 { display: block; font-family: 'Poppins', 'Inter', system
 
 .tech-section {
             padding: 60px 20px;
-            max-width: 1000px;
+            max-width: 1400px;
             margin: 0 auto;
             text-align: center;
         }
@@ -1071,6 +1079,8 @@ footer {
   padding: 36px 18px;
   text-align: center;
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .educationSection .education-container {
