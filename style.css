@@ -148,6 +148,7 @@ nav li:first-child{
     .hamburger{ display: flex; }
     /* ensure desktop nav hidden and hamburger present */
     .main-nav .nav-right.hideOnMobile{ display: none; }
+  .nav-inner{ padding-right: 56px; }
     nav{width: 100%;}
 }
 
@@ -866,8 +867,11 @@ section h1, section h2 { display: block; font-family: 'Poppins', 'Inter', system
 
 @media (max-width: 600px){
     .circular-skills{ 
-        grid-template-columns: repeat(2, 1fr); /* 2 per row on mobile */
+    grid-template-columns: repeat(3, 1fr); /* 3 per row on mobile */
+    gap: 12px;
     }
+  .skill-circle{ width: 110px; }
+  .circular-chart{ width: 78px; height: 78px; }
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -1251,3 +1255,654 @@ footer {
   }
 }
 
+/* ============================================
+   COMPREHENSIVE RESPONSIVE IMPROVEMENTS
+   ============================================ */
+
+/* Prevent horizontal scroll - Critical for GitHub deployment */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Base responsive typography */
+@media (max-width: 1024px) {
+  section > h1 {
+    font-size: 26px;
+    margin: 40px 30px 0 30px;
+  }
+  
+  .line {
+    margin-left: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  section > h1 {
+    font-size: 24px;
+    margin: 32px 20px 0 20px;
+  }
+  
+  .line {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  section > h1 {
+    font-size: 22px;
+    margin: 24px 15px 0 15px;
+  }
+  
+  .line {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE NAVIGATION
+   ============================================ */
+
+@media (max-width: 768px) {
+  .nav-inner {
+    max-width: 100%;
+    padding: 8px 12px;
+    flex-wrap: wrap;
+  }
+  
+  nav ul {
+    justify-content: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  
+  nav a {
+    padding: 0 12px;
+    font-size: 12px;
+  }
+  
+  nav li {
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-inner {
+    padding: 8px 8px;
+    gap: 8px;
+  }
+  
+  nav ul {
+    gap: 2px;
+  }
+  
+  nav a {
+    padding: 0 8px;
+    font-size: 11px;
+  }
+  
+  .brand {
+    font-size: 16px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE HERO SECTION
+   ============================================ */
+
+@media (max-width: 768px) {
+  .firstSection {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 30px 20px;
+  }
+  
+  .lefttSection {
+    text-align: center;
+  }
+  
+  .lefttSection span {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .rightSection {
+    width: 100%;
+  }
+  
+  .rightSection img {
+    max-width: 280px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .firstSection {
+    padding: 20px 15px;
+    gap: 1rem;
+  }
+  
+  .lefttSection span {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  
+  .rightSection img {
+    max-width: 240px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE EDUCATION SECTION
+   ============================================ */
+
+@media (max-width: 992px) {
+  .educationSection {
+    padding: 30px 40px;
+  }
+  
+  .educationSection .education-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .educationSection {
+    padding: 25px 20px;
+  }
+  
+  .educationSection .education-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 15px auto 0;
+  }
+  
+  .edu-card {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .educationSection {
+    padding: 20px 15px;
+  }
+  
+  .edu-card {
+    padding: 12px;
+    border-radius: 8px;
+  }
+  
+  .edu-card h3 {
+    font-size: 16px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE SKILLS SECTION
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .circular-skills {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .skill-circle {
+    width: 120px;
+  }
+  
+  .circular-chart {
+    max-width: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .circular-skills {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+  
+  .skill-circle {
+    width: clamp(110px, 30vw, 130px);
+  }
+  
+  .circular-chart {
+    max-width: clamp(88px, 22vw, 110px);
+  }
+  
+  .skill-label {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .circular-skills {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 10px 8px;
+  }
+  
+  .skill-circle {
+    width: clamp(95px, 30vw, 115px);
+  }
+  
+  .circular-chart {
+    max-width: clamp(78px, 24vw, 96px);
+  }
+  
+  .skill-label {
+    font-size: 11px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE EXPERIENCE SECTION
+   ============================================ */
+
+@media (max-width: 768px) {
+  .thirdSection .Cantainer {
+    width: 100%;
+    padding: 15px;
+    min-height: auto;
+  }
+  
+  .experienceLine {
+    gap: 12px;
+    padding: 10px 0 10px 15px;
+  }
+  
+  .jobYear {
+    padding: 15px;
+    gap: 12px;
+  }
+  
+  .jobYear img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .organization {
+    font-size: 15px;
+  }
+  
+  .desc {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .thirdSection .Cantainer {
+    padding: 10px;
+  }
+  
+  .experienceLine {
+    gap: 10px;
+    padding: 8px 0 8px 12px;
+  }
+  
+  .jobYear {
+    padding: 12px;
+    gap: 10px;
+    flex-direction: column;
+  }
+  
+  .jobYear img {
+    width: 35px;
+    height: 35px;
+    margin: 0 auto;
+  }
+  
+  .organization {
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .year {
+    text-align: center;
+    font-size: 12px;
+  }
+  
+  .desc {
+    font-size: 12px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE PROJECTS SECTION
+   ============================================ */
+
+@media (max-width: 1200px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-section {
+    padding: 25px 20px;
+  }
+  
+  .filters-container {
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .filter-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .cantainer {
+    padding: 12px;
+    gap: 15px;
+  }
+  
+  .box {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+  }
+  
+  .box img {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .description {
+    padding: 12px;
+  }
+  
+  .description p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-section {
+    padding: 20px 12px;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .filter-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  
+  .cantainer {
+    padding: 10px;
+    gap: 12px;
+    flex-direction: column;
+  }
+  
+  .box {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .box img {
+    height: 180px;
+  }
+  
+  .description {
+    padding: 10px;
+  }
+  
+  .description p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  
+  .github-link {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE CERTIFICATES/ACHIEVEMENTS
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .fifthSection .cantainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .fifthSection {
+    padding: 25px 20px;
+  }
+  
+  .fifthSection .cantainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .fifthSection .box {
+    width: 100%;
+    height: auto;
+  }
+  
+  .fifthSection .box img {
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .fifthSection .description {
+    padding: 12px;
+  }
+  
+  .fifthSection .description p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fifthSection {
+    padding: 20px 12px;
+  }
+  
+  .fifthSection .cantainer {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .fifthSection .box img {
+    height: 160px;
+  }
+  
+  .fifthSection .description {
+    padding: 10px;
+  }
+  
+  .fifthSection .description p {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
+
+/* ============================================
+   RESPONSIVE TECH STACK SECTION
+   ============================================ */
+
+@media (max-width: 768px) {
+  .tech-section {
+    padding: 25px 20px;
+  }
+  
+  .sixthSection .main .row1,
+  .sixthSection .main .row2,
+  .sixthSection .main .row3,
+  .sixthSection .main .row4,
+  .sixthSection .main .row5,
+  .sixthSection .main .row6 {
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .sixthSection .main .row1 .box,
+  .sixthSection .main .row2 .box,
+  .sixthSection .main .row3 .box,
+  .sixthSection .main .row4 .box,
+  .sixthSection .main .row5 .box,
+  .sixthSection .main .row6 .box {
+    width: 100px;
+    height: 100px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-section {
+    padding: 20px 12px;
+  }
+  
+  .sixthSection .main .row1,
+  .sixthSection .main .row2,
+  .sixthSection .main .row3,
+  .sixthSection .main .row4,
+  .sixthSection .main .row5,
+  .sixthSection .main .row6 {
+    gap: 8px;
+  }
+  
+  .sixthSection .main .row1 .box,
+  .sixthSection .main .row2 .box,
+  .sixthSection .main .row3 .box,
+  .sixthSection .main .row4 .box,
+  .sixthSection .main .row5 .box,
+  .sixthSection .main .row6 .box {
+    width: 90px;
+    height: 90px;
+    font-size: 11px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE FOOTER
+   ============================================ */
+
+@media (max-width: 768px) {
+  footer {
+    padding: 20px 15px;
+  }
+  
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0;
+  }
+  
+  .contact-section h2,
+  .form-section h2 {
+    font-size: 18px;
+  }
+  
+  .social-icons {
+    gap: 12px;
+  }
+  
+  .social-icons a {
+    width: 36px;
+    height: 36px;
+  }
+  
+  input, textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+  
+  .form-section button {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  footer {
+    padding: 15px 10px;
+  }
+  
+  .footer-container {
+    gap: 15px;
+  }
+  
+  .contact-section h2,
+  .form-section h2 {
+    font-size: 16px;
+  }
+  
+  .contact-section p {
+    font-size: 13px;
+  }
+  
+  .social-icons {
+    gap: 10px;
+  }
+  
+  .social-icons a {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+  
+  input, textarea {
+    font-size: 13px;
+    padding: 8px;
+  }
+  
+  .form-section button {
+    padding: 8px;
+    font-size: 12px;
+  }
+}
+
+/* ============================================
+   FINAL MOBILE FIXES - NO SIDE SCROLLING
+   ============================================ */
+
+@media (max-width: 768px) {
+  .firstSection,
+  .secondSection,
+  .thirdSection,
+  .forthSection,
+  .fifthSection,
+  .sixthSection,
+  .educationSection,
+  .tech-section {
+    max-width: 100%;
+    padding: 20px 15px;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 480px) {
+  .firstSection,
+  .secondSection,
+  .thirdSection,
+  .forthSection,
+  .fifthSection,
+  .sixthSection,
+  .educationSection,
+  .tech-section {
+    padding: 15px 12px;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+}
