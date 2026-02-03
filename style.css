@@ -493,8 +493,8 @@ nav li:first-child{
 @media (max-width: 800px) {
     .fifthSection .cantainer { padding: 20px 12px; min-height: 420px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
     .fifthSection .cantainer .box { display:none; } /* hide original boxes when deck is active */
-    .fifthSection .cantainer .stack-deck { width: 100%; height: calc(100vh * 0.65); max-height:820px; display:flex; align-items:center; justify-content:center; perspective:1000px; }
-    .fifthSection .cantainer .stack-deck .card { position: absolute; width: 86%; max-width:420px; height: calc(min(86vw, 520px)); background: rgba(8,18,30,0.96); border-radius:14px; box-shadow:0 20px 40px rgba(0,0,0,0.6); padding:16px; display:flex; flex-direction:column; gap:8px; left:50%; transform:translateX(-50%); }
+    .fifthSection .cantainer .stack-deck { width: 100%; height: calc(100vh * 0.75); max-height:1200px; display:flex; align-items:center; justify-content:center; perspective:1000px; }
+    .fifthSection .cantainer .stack-deck .card { position: absolute; width: 86%; max-width:420px; height: calc(min(86vw, 650px)); background: rgba(8,18,30,0.96); border-radius:14px; box-shadow:0 20px 40px rgba(0,0,0,0.6); padding:16px; display:flex; flex-direction:column; gap:8px; left:50%; transform:translateX(-50%); }
     .fifthSection .cantainer .stack-deck .card:nth-child(1){ transform: translateX(-50%) translateY(0) scale(1); z-index: 30; }
     .fifthSection .cantainer .stack-deck .card:nth-child(2){ transform: translateX(-50%) translateY(12px) scale(0.985); z-index: 20; }
     .fifthSection .cantainer .stack-deck .card:nth-child(3){ transform: translateX(-50%) translateY(24px) scale(0.97); z-index: 10; }
@@ -511,7 +511,7 @@ nav li:first-child{
         width: auto;
         max-width: 100%;
         height: auto;
-        max-height: 56%; /* allow room for title/desc and action links */
+        max-height: 48%;
         object-fit: contain;
         margin: 0 auto 12px auto;
         border-radius: 8px;
