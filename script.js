@@ -467,4 +467,4 @@ function downloadCV(role) {
     // Open CV in new tab
     window.open(fileName, '_blank');
 }
-
+ 
