@@ -270,8 +270,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', buildStack);
     document.addEventListener('DOMContentLoaded', buildStack);
 })();
-
 // --- Reusable stacked deck for certificates & achievements (all fifthSection containers) ---
+/*
 (function(){
     const breakpoint = 800;
     function buildStacks(){
@@ -402,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', buildStacks);
     document.addEventListener('DOMContentLoaded', buildStacks);
 })();
-
+*/
 // ===== CV MENU BUTTON FUNCTIONALITY =====
 document.addEventListener('DOMContentLoaded', () => {
     const cvBtn = document.getElementById('cvMenuButton');
@@ -467,4 +467,170 @@ function downloadCV(role) {
     // Open CV in new tab
     window.open(fileName, '_blank');
 }
+
+// --- Swipeable carousel with tap-to-reveal for mobile certificates/achievements ---
+(function(){
+    const breakpoint = 800;
+    
+    function initCarousel(){
+        if(window.innerWidth > breakpoint) return;
+        
+        const containers = document.querySelectorAll('.fifthSection .cantainer');
+        
+        containers.forEach(container => {
+            // Remove existing carousel
+            const existingCarousel = container.querySelector('.card-carousel');
+            if(existingCarousel) existingCarousel.remove();
+            
+            const boxes = Array.from(container.querySelectorAll('.box'));
+            if(boxes.length === 0) return;
+            
+            // Create carousel
+            const carousel = document.createElement('div');
+            carousel.className = 'card-carousel';
+            
+            let currentIndex = 0;
+            let startX = 0;
+            let isDragging = false;
+            let dragStartY = 0;
+            
+            function createCardElement(box, isBack = false) {
+                const card = document.createElement('div');
+                card.className = `carousel-card ${isBack ? 'back' : ''}`;
+                card.innerHTML = box.innerHTML;
+                return card;
+            }
+            
+            function renderCards() {
+                carousel.innerHTML = '';
+                const current = createCardElement(boxes[currentIndex], false);
+                const next = createCardElement(boxes[(currentIndex + 1) % boxes.length], true);
+                carousel.appendChild(current);
+                carousel.appendChild(next);
+                
+                // Tap to toggle description visibility
+                current.addEventListener('click', (e) => {
+                    if(e.target.tagName === 'A') return;
+                    current.classList.toggle('active');
+                });
+            }
+            
+            function swipeCard(direction) {
+                const cards = carousel.querySelectorAll('.carousel-card');
+                const topCard = cards[0];
+                
+                if(!topCard) return;
+                
+                topCard.classList.add('swiping');
+                topCard.style.transform = `translateX(${direction === 'left' ? -120 : 120}%) translateY(0) rotate(${direction === 'left' ? -15 : 15}deg)`;
+                topCard.style.opacity = '0';
+                
+                setTimeout(() => {
+                    currentIndex = (currentIndex + 1) % boxes.length;
+                    renderCards();
+                }, 300);
+            }
+            
+            carousel.addEventListener('pointerdown', (e) => {
+                startX = e.clientX || (e.touches && e.touches[0].clientX);
+                dragStartY = e.clientY || (e.touches && e.touches[0].clientY);
+                isDragging = true;
+            });
+            
+            carousel.addEventListener('pointermove', (e) => {
+                if(!isDragging) return;
+                const currentX = e.clientX || (e.touches && e.touches[0].clientX);
+                const currentY = e.clientY || (e.touches && e.touches[0].clientY);
+                const diffX = currentX - startX;
+                const diffY = currentY - dragStartY;
+                
+                // Only consider horizontal swipe
+                if(Math.abs(diffX) < Math.abs(diffY)) return;
+                
+                const cards = carousel.querySelectorAll('.carousel-card');
+                const topCard = cards[0];
+                
+                if(topCard && Math.abs(diffX) > 10) {
+                    topCard.classList.add('swiping');
+                    const rotate = diffX / 30;
+                    topCard.style.transform = `translateX(calc(-50% + ${diffX}px)) rotate(${rotate}deg)`;
+                    topCard.style.opacity = `${Math.max(0.3, 1 - Math.abs(diffX) / 300)}`;
+                }
+            });
+            
+            carousel.addEventListener('pointerup', (e) => {
+                if(!isDragging) return;
+                isDragging = false;
+                
+                const currentX = e.clientX || (e.changedTouches && e.changedTouches[0].clientX);
+                const diff = currentX - startX;
+                const cards = carousel.querySelectorAll('.carousel-card');
+                const topCard = cards[0];
+                
+                if(!topCard) return;
+                
+                if(Math.abs(diff) > 100) {
+                    swipeCard(diff > 0 ? 'right' : 'left');
+                } else {
+                    topCard.classList.remove('swiping');
+                    topCard.style.transform = 'translateX(-50%) translateY(0) rotate(0deg)';
+                    topCard.style.opacity = '1';
+                }
+            });
+            
+            carousel.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                dragStartY = e.touches[0].clientY;
+                isDragging = true;
+            }, {passive: true});
+            
+            carousel.addEventListener('touchmove', (e) => {
+                if(!isDragging) return;
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const diffX = currentX - startX;
+                const diffY = currentY - dragStartY;
+                
+                // Only consider horizontal swipe
+                if(Math.abs(diffX) < Math.abs(diffY)) return;
+                
+                const cards = carousel.querySelectorAll('.carousel-card');
+                const topCard = cards[0];
+                
+                if(topCard && Math.abs(diffX) > 10) {
+                    topCard.classList.add('swiping');
+                    const rotate = diffX / 30;
+                    topCard.style.transform = `translateX(calc(-50% + ${diffX}px)) rotate(${rotate}deg)`;
+                    topCard.style.opacity = `${Math.max(0.3, 1 - Math.abs(diffX) / 300)}`;
+                }
+            }, {passive: true});
+            
+            carousel.addEventListener('touchend', (e) => {
+                if(!isDragging) return;
+                isDragging = false;
+                
+                const currentX = e.changedTouches[0].clientX;
+                const diff = currentX - startX;
+                const cards = carousel.querySelectorAll('.carousel-card');
+                const topCard = cards[0];
+                
+                if(!topCard) return;
+                
+                if(Math.abs(diff) > 100) {
+                    swipeCard(diff > 0 ? 'right' : 'left');
+                } else {
+                    topCard.classList.remove('swiping');
+                    topCard.style.transform = 'translateX(-50%) translateY(0) rotate(0deg)';
+                    topCard.style.opacity = '1';
+                }
+            }, {passive: true});
+            
+            container.appendChild(carousel);
+            renderCards();
+        });
+    }
+    
+    window.addEventListener('resize', initCarousel);
+    document.addEventListener('DOMContentLoaded', initCarousel);
+})();
  

@@ -1039,39 +1039,101 @@ nav li:first-child{
 /* ======================================================
    CERTIFICATES / ACHIEVEMENTS
    ====================================================== */
-/* Certificates: reuse stack-deck appearance on mobile */
+/* Mobile: Swipeable cards with tap-to-reveal */
 @media (max-width: 800px) {
-    .fifthSection .cantainer { padding: 20px 12px; min-height: 420px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-    .fifthSection .cantainer .box { display:none; } /* hide original boxes when deck is active */
-    .fifthSection .cantainer .stack-deck { width: 100%; height: calc(100vh * 0.75); max-height:1200px; display:flex; align-items:center; justify-content:center; perspective:1000px; }
-    .fifthSection .cantainer .stack-deck .card { position: absolute; width: 86%; max-width:420px; height: calc(min(86vw, 650px)); background: rgba(8,18,30,0.96); border-radius:14px; box-shadow:0 20px 40px rgba(0,0,0,0.6); padding:16px; display:flex; flex-direction:column; gap:8px; left:50%; transform:translateX(-50%); }
-    .fifthSection .cantainer .stack-deck .card:nth-child(1){ transform: translateX(-50%) translateY(0) scale(1); z-index: 30; }
-    .fifthSection .cantainer .stack-deck .card:nth-child(2){ transform: translateX(-50%) translateY(12px) scale(0.985); z-index: 20; }
-    .fifthSection .cantainer .stack-deck .card:nth-child(3){ transform: translateX(-50%) translateY(24px) scale(0.97); z-index: 10; }
-    .fifthSection .cantainer .stack-deck .card:nth-child(n+4){ transform: translateX(-50%) translateY(36px) scale(0.955); z-index: 5; opacity: 0.95; }
-    .fifthSection .cantainer .stack-deck .card.dragging{ transition: none; }
-    .fifthSection .cantainer .stack-deck .card.revealed{ transform: translateX(-50%) translateY(-120%) scale(0.98); opacity: 0; }
-
-    /* Show only image for cards behind the top—keep full content for :first-child */
-    .fifthSection .cantainer .stack-deck .card { overflow: hidden; }
-    /* Back cards: fill the card so they look like thumbnails
-       Top (first) card: show image contained at the top so the content (links/buttons) below remain visible */
-    .fifthSection .cantainer .stack-deck .card img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
-    .fifthSection .cantainer .stack-deck .card:first-child img {
-        width: auto;
-        max-width: 100%;
-        height: auto;
-        max-height: 48%;
-        object-fit: contain;
-        margin: 0 auto 12px auto;
+    .fifthSection .cantainer {
+        padding: 20px 12px;
+        min-height: 420px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .fifthSection .cantainer .box {
+        display: none; /* hide original boxes */
+    }
+    
+    .fifthSection .cantainer .card-carousel {
+        width: 100%;
+        height: calc(100vh * 0.75);
+        max-height: 1200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1000px;
+        position: relative;
+    }
+    
+    .fifthSection .cantainer .carousel-card {
+        position: absolute;
+        width: 86%;
+        max-width: 420px;
+        height: calc(min(86vw, 650px));
+        background: rgba(8, 18, 30, 0.96);
+        border-radius: 14px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+        transition: transform 0.28s ease, opacity 0.28s ease;
+        z-index: 10;
+        overflow: hidden;
+    }
+    }
+    
+    /* Back card (next in queue) */
+    .fifthSection .cantainer .carousel-card.back {
+        transform: translateX(-50%) translateY(20px) scale(0.95);
+        z-index: 5;
+        opacity: 0.8;
+        pointer-events: none;
+    }
+    
+    /* Card being swiped out */
+    .fifthSection .cantainer .carousel-card.swiping {
+        transition: none;
+    }
+    
+    .fifthSection .cantainer .carousel-card img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
         border-radius: 8px;
+        flex-shrink: 0;
     }
-    .fifthSection .cantainer .stack-deck .card:not(:first-child) {
-        padding: 0; /* remove inner padding so image can fill */
+    
+    .fifthSection .cantainer .carousel-card .description {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: translateY(100%);
+        background-color: rgba(0, 0, 0, 0.85);
+        color: #fff;
+        padding: 18px;
+        box-sizing: border-box;
+        transition: transform 0.3s cubic-bezier(.22,.9,.22,1);
+        font-size: 12px;
+        text-align: center;
     }
-    .fifthSection .cantainer .stack-deck .card:not(:first-child) * { visibility: hidden; }
-    .fifthSection .cantainer .stack-deck .card:not(:first-child) img { visibility: visible; }
-}
+    
+    .fifthSection .cantainer .carousel-card.active .description {
+        transform: translateY(0);
+        background-color: rgba(0, 0, 0, 0.85);
+        border-radius: 0 0 8px 8px;
+    }
+    
+    .fifthSection .cantainer .carousel-card a {
+        align-self: center;
+    }
 
 /* global section heading styles apply to certificates */
 .fifthSection .cantainer {
@@ -1122,29 +1184,22 @@ nav li:first-child{
 
 @media (max-width: 800px) {
     .fifthSection .cantainer .box {
-        width: 70%;
-        height:400px;
-        min-height: 460px; /* increase mobile card height for better readability */
+        width: 85%;
+        height: 420px;
+        min-height: 420px;
         border-radius: 30px;
     }
-    .fifthSection .cantainer{
-        width: 100%;
-        justify-content:center;
-    }
     .fifthSection .cantainer .box p{
-        font-size: 10px;
+        font-size: 12px;
+        line-height: 1.5;
     }
-
-    
 }
 
 /* Strong mobile overrides (certificates-specific) */
 @media (max-width: 800px) {
     /* Projects / Certificates: make boxes fluid */
-    .forthSection .cantainer .box,
-    .fifthSection .cantainer .box { width: 92%; height: auto; max-height: none; min-height: 420px; }
-    .forthSection .cantainer .box img,
-    .fifthSection .cantainer .box img { width: 100%; height: auto; object-fit: cover; }
+    .forthSection .cantainer .box { width: 92%; height: auto; max-height: none; min-height: 420px; }
+    .forthSection .cantainer .box img { width: 100%; height: auto; object-fit: cover; }
 }
 
 /* Responsive certificates/achievements */
