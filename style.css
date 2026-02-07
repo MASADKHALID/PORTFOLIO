@@ -2232,14 +2232,14 @@ nav{
     width: 100%;
 }
 
-/* Centered inner container for desktop */
+/* Full width nav container */
 .nav-inner{
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
     padding: 8px 20px;
     display: flex;
     align-items: center;
     gap: 12px;
+    box-sizing: border-box;
 }
 
 nav ul{
