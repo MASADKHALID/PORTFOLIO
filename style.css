@@ -645,7 +645,11 @@ nav li:first-child{
 
 @media (max-width: 800px) {
     /* Mobile: attractive stacked timeline cards (desktop unchanged) */
-    .thirdSection .Cantainer { padding: 12px 16px; }
+    .thirdSection .Cantainer { 
+        padding: 12px 16px;
+        min-height: 600px;
+        height: auto;
+    }
 
     .thirdSection .experienceLine { position: relative; padding: 20px 0; width: 100%; margin: 0; box-sizing: border-box; }
     .thirdSection .experienceLine::before{
@@ -2374,7 +2378,11 @@ nav li:first-child{
 
 @media (max-width: 800px) {
     /* Mobile: attractive stacked timeline cards (desktop unchanged) */
-    .thirdSection .Cantainer { padding: 12px 16px; }
+    .thirdSection .Cantainer { 
+        padding: 12px 16px;
+        min-height: 600px;
+        height: auto;
+    }
 
     .thirdSection .experienceLine { position: relative; padding: 20px 0; width: 100%; margin: 0; box-sizing: border-box; }
     .thirdSection .experienceLine::before{
