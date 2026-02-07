@@ -54,17 +54,17 @@ window.addEventListener('load', () => {
     
     // Create targets periodically during loading
     const gameInterval = setInterval(() => {
-        if (document.getElementById('preloader')) {
+        if (document.getElementById('preloader') && !document.getElementById('preloader').classList.contains('fade-out')) {
             createTarget();
         } else {
             clearInterval(gameInterval);
         }
     }, 600);
     
-    // Stop game after 20 seconds
+    // Stop game when preloader starts fading out
     setTimeout(() => {
         clearInterval(gameInterval);
-    }, 20000);
+    }, 19500); // Stop 500ms before fade-out
 })();
 
 // --- Mobile hamburger menu: open/close + close on link tap ---
