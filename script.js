@@ -1,16 +1,71 @@
-// --- Preloader ---
+// --- Preloader with Mini-Game ---
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
+    const loadEndTime = Date.now();
+    const minGameTime = 20000; // Minimum 20 seconds for game after page loads
+    
     if(preloader) {
-        // Minimum display time for loader
+        // Add extra time for gameplay after page is ready
         setTimeout(() => {
             preloader.classList.add('fade-out');
             setTimeout(() => {
                 preloader.style.display = 'none';
             }, 600);
-        }, 1000);
+        }, minGameTime);
     }
 });
+
+// Mini-game during loading
+(function() {
+    let score = 0;
+    const preloader = document.getElementById('preloader');
+    const scoreDisplay = document.getElementById('gameScore');
+    
+    if (!preloader || !scoreDisplay) return;
+    
+    function createTarget() {
+        const target = document.createElement('div');
+        target.className = 'game-target';
+        target.textContent = 'catch me';
+        
+        // Random position within safe bounds
+        const x = Math.random() * (window.innerWidth - 100) + 50;
+        const y = Math.random() * (window.innerHeight - 250) + 100;
+        
+        target.style.left = x + 'px';
+        target.style.top = y + 'px';
+        
+        target.addEventListener('click', function() {
+            score++;
+            scoreDisplay.textContent = score;
+            target.classList.add('clicked');
+            setTimeout(() => target.remove(), 300);
+        });
+        
+        preloader.appendChild(target);
+        
+        // Remove target after 2 seconds if not clicked
+        setTimeout(() => {
+            if (target.parentNode) {
+                target.remove();
+            }
+        }, 2000);
+    }
+    
+    // Create targets periodically during loading
+    const gameInterval = setInterval(() => {
+        if (document.getElementById('preloader')) {
+            createTarget();
+        } else {
+            clearInterval(gameInterval);
+        }
+    }, 600);
+    
+    // Stop game after 20 seconds
+    setTimeout(() => {
+        clearInterval(gameInterval);
+    }, 20000);
+})();
 
 // --- Mobile hamburger menu: open/close + close on link tap ---
 document.addEventListener('DOMContentLoaded', () => {

@@ -151,6 +151,65 @@
     50% { opacity: 0.5; }
 }
 
+.loading-game {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.game-score {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #7be8ff;
+    margin-bottom: 10px;
+}
+
+.game-instruction {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.game-target {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #7be8ff 0%, #ffc461 100%);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(123, 232, 255, 0.5);
+    animation: float 2s ease-in-out infinite;
+    transition: transform 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: #081725;
+    text-align: center;
+    line-height: 1;
+    padding: 2px;
+}
+
+.game-target:hover {
+    transform: scale(1.2);
+}
+
+.game-target.clicked {
+    animation: explode 0.3s ease forwards;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes explode {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
 @media (max-width: 480px) {
     .loader-ring {
         width: 120px;
@@ -163,6 +222,11 @@
     
     .code-bracket {
         font-size: 28px;
+    }
+    
+    .game-target {
+        width: 35px;
+        height: 35px;
     }
     
     .loading-progress {
