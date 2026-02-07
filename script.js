@@ -1,3 +1,14 @@
+// --- Preloader ---
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if(preloader) {
+        preloader.classList.add('fade-out');
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 600);
+    }
+});
+
 // --- Mobile hamburger menu: open/close + close on link tap ---
 document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('hamburgerBtn');
