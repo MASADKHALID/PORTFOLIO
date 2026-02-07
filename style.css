@@ -1150,7 +1150,7 @@ nav li:first-child{
     .fifthSection .cantainer .carousel-card a {
         align-self: center;
     }
-
+}
 /* global section heading styles apply to certificates */
 .fifthSection .cantainer {
     display: flex;
@@ -3859,7 +3859,7 @@ html, body {
   }
   
   .social-icons a {
-    width: 32px;
+    width: 15px;
     height: 32px;
     font-size: 12px;
   }

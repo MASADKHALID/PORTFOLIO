@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mobile.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobile));
 });
 
-// --- Circular skill animation ---
+// --- Circular skill animation (continuous loop) ---
 document.addEventListener('DOMContentLoaded', () => {
     const circles = document.querySelectorAll('.skill-circle');
     const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
@@ -37,18 +37,35 @@ document.addEventListener('DOMContentLoaded', () => {
         svgCircle.style.strokeDasharray = `${pathLength}`;
         svgCircle.style.strokeDashoffset = `${pathLength}`;
 
-        const start = performance.now();
         const duration = 1800;
-        function frame(now){
-            const progress = Math.min(1, (now - start) / duration);
-            const eased = easeOutCubic(progress);
-            const pct = eased * target / 100;
-            const offset = Math.max(0, pathLength * (1 - pct));
-            svgCircle.style.strokeDashoffset = `${offset}`;
-            text.textContent = `${Math.round(eased * target)}%`;
-            if(progress < 1) requestAnimationFrame(frame);
+        const pauseDuration = 1000;
+        
+        function loop(){
+            const start = performance.now();
+            
+            function frame(now){
+                const elapsed = now - start;
+                const progress = Math.min(1, elapsed / duration);
+                const eased = easeOutCubic(progress);
+                const pct = eased * target / 100;
+                const offset = Math.max(0, pathLength * (1 - pct));
+                svgCircle.style.strokeDashoffset = `${offset}`;
+                text.textContent = `${Math.round(eased * target)}%`;
+                
+                if(progress < 1) {
+                    requestAnimationFrame(frame);
+                } else {
+                    // Pause at full, then reset and loop
+                    setTimeout(() => {
+                        svgCircle.style.strokeDashoffset = `${pathLength}`;
+                        text.textContent = '0%';
+                        setTimeout(loop, 100);
+                    }, pauseDuration);
+                }
+            }
+            requestAnimationFrame(frame);
         }
-        requestAnimationFrame(frame);
+        loop();
     }
 
     function onScroll(){
