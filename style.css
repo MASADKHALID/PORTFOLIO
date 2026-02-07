@@ -282,14 +282,14 @@ nav{
     width: 100%;
 }
 
-/* Centered inner container for desktop */
+/* Full width nav container */
 .nav-inner{
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
     padding: 8px 20px;
     display: flex;
     align-items: center;
     gap: 12px;
+    box-sizing: border-box;
 }
 
 nav ul{
@@ -1463,8 +1463,6 @@ nav li:first-child{
   padding: 36px 60px;
   text-align: center;
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
-  max-width: 1400px;
-  margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
 }
@@ -1473,9 +1471,10 @@ nav li:first-child{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
-  max-width: 1100px;
+  width: 100%;
   margin: 18px auto 0 auto;
   padding: 6px;
+  box-sizing: border-box;
 }
 
 /* Match the h1 treatment used site-wide (and for Work Experience) */
@@ -3255,8 +3254,6 @@ footer {
   padding: 36px 60px;
   text-align: center;
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
-  max-width: 1400px;
-  margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
 }
@@ -3265,9 +3262,10 @@ footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
-  max-width: 1100px;
+  width: 100%;
   margin: 18px auto 0 auto;
   padding: 6px;
+  box-sizing: border-box;
 }
 
 /* Match the h1 treatment used site-wide (and for Work Experience) */
