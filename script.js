@@ -494,35 +494,43 @@ function downloadCV(role) {
             let isDragging = false;
             let dragStartY = 0;
             
-            function createCardElement(box, isBack = false) {
+            function createCardElement(box, backIndex = 0) {
                 const card = document.createElement('div');
-                card.className = `carousel-card ${isBack ? 'back' : ''}`;
+                const className = backIndex === 0 ? 'carousel-card' : `carousel-card back-${backIndex}`;
+                card.className = className;
                 card.innerHTML = box.innerHTML;
                 return card;
             }
             
             function renderCards() {
                 carousel.innerHTML = '';
-                const current = createCardElement(boxes[currentIndex], false);
-                const next = createCardElement(boxes[(currentIndex + 1) % boxes.length], true);
-                carousel.appendChild(current);
-                carousel.appendChild(next);
+                
+                // Show front card + 3 tilted back cards
+                const front = createCardElement(boxes[currentIndex], 0);
+                const back1 = createCardElement(boxes[(currentIndex + 1) % boxes.length], 1);
+                const back2 = createCardElement(boxes[(currentIndex + 2) % boxes.length], 2);
+                const back3 = createCardElement(boxes[(currentIndex + 3) % boxes.length], 3);
+                
+                carousel.appendChild(back3);
+                carousel.appendChild(back2);
+                carousel.appendChild(back1);
+                carousel.appendChild(front);
                 
                 // Tap to toggle description visibility
-                current.addEventListener('click', (e) => {
+                front.addEventListener('click', (e) => {
                     if(e.target.tagName === 'A') return;
-                    current.classList.toggle('active');
+                    front.classList.toggle('active');
                 });
             }
             
             function swipeCard(direction) {
                 const cards = carousel.querySelectorAll('.carousel-card');
-                const topCard = cards[0];
+                const topCard = cards[3]; // Front card is last in DOM
                 
                 if(!topCard) return;
                 
                 topCard.classList.add('swiping');
-                topCard.style.transform = `translateX(${direction === 'left' ? -120 : 120}%) translateY(0) rotate(${direction === 'left' ? -15 : 15}deg)`;
+                topCard.style.transform = `translateX(${direction === 'left' ? -120 : 120}%) translateY(0) rotate(${direction === 'left' ? -25 : 25}deg)`;
                 topCard.style.opacity = '0';
                 
                 setTimeout(() => {
@@ -544,15 +552,14 @@ function downloadCV(role) {
                 const diffX = currentX - startX;
                 const diffY = currentY - dragStartY;
                 
-                // Only consider horizontal swipe
                 if(Math.abs(diffX) < Math.abs(diffY)) return;
                 
                 const cards = carousel.querySelectorAll('.carousel-card');
-                const topCard = cards[0];
+                const topCard = cards[3];
                 
                 if(topCard && Math.abs(diffX) > 10) {
                     topCard.classList.add('swiping');
-                    const rotate = diffX / 30;
+                    const rotate = diffX / 20;
                     topCard.style.transform = `translateX(calc(-50% + ${diffX}px)) rotate(${rotate}deg)`;
                     topCard.style.opacity = `${Math.max(0.3, 1 - Math.abs(diffX) / 300)}`;
                 }
@@ -565,7 +572,7 @@ function downloadCV(role) {
                 const currentX = e.clientX || (e.changedTouches && e.changedTouches[0].clientX);
                 const diff = currentX - startX;
                 const cards = carousel.querySelectorAll('.carousel-card');
-                const topCard = cards[0];
+                const topCard = cards[3];
                 
                 if(!topCard) return;
                 
@@ -591,15 +598,14 @@ function downloadCV(role) {
                 const diffX = currentX - startX;
                 const diffY = currentY - dragStartY;
                 
-                // Only consider horizontal swipe
                 if(Math.abs(diffX) < Math.abs(diffY)) return;
                 
                 const cards = carousel.querySelectorAll('.carousel-card');
-                const topCard = cards[0];
+                const topCard = cards[3];
                 
                 if(topCard && Math.abs(diffX) > 10) {
                     topCard.classList.add('swiping');
-                    const rotate = diffX / 30;
+                    const rotate = diffX / 20;
                     topCard.style.transform = `translateX(calc(-50% + ${diffX}px)) rotate(${rotate}deg)`;
                     topCard.style.opacity = `${Math.max(0.3, 1 - Math.abs(diffX) / 300)}`;
                 }
@@ -612,7 +618,7 @@ function downloadCV(role) {
                 const currentX = e.changedTouches[0].clientX;
                 const diff = currentX - startX;
                 const cards = carousel.querySelectorAll('.carousel-card');
-                const topCard = cards[0];
+                const topCard = cards[3];
                 
                 if(!topCard) return;
                 
