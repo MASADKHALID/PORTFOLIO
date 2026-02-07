@@ -3,8 +3,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.querySelector('.progress-bar');
     const progressText = document.getElementById('loadPercent');
-    const minGameTime = 20000;
-    
+    const isFirstVisit = !localStorage.getItem('portfolioVisited');
+    const minGameTime = isFirstVisit ? 10000 : 10000; // 10 seconds after load
     if (progressBar) {
         progressBar.style.animation = 'none';
         progressBar.style.transition = 'none';
@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
-    const minGameTime = 20000; // Minimum 20 seconds for game after page loads
+    const isFirstVisit = !localStorage.getItem('portfolioVisited');
+    const minGameTime = isFirstVisit ? 10000 : 10000; // 10 seconds after load
     
     if(preloader) {
         // Add extra time for gameplay after page is ready
@@ -40,6 +41,7 @@ window.addEventListener('load', () => {
             preloader.classList.add('fade-out');
             setTimeout(() => {
                 preloader.style.display = 'none';
+                localStorage.setItem('portfolioVisited', '1');
             }, 600);
         }, minGameTime);
     }
