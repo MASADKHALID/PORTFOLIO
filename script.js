@@ -54,6 +54,11 @@ window.addEventListener('load', () => {
     if (!preloader || !scoreDisplay) return;
     
     function createTarget() {
+        // Only create targets while preloader is still visible
+        if (!preloader || preloader.classList.contains('fade-out')) {
+            return false;
+        }
+        
         const target = document.createElement('div');
         target.className = 'game-target';
         target.textContent = 'catch me';
@@ -80,21 +85,16 @@ window.addEventListener('load', () => {
                 target.remove();
             }
         }, 2000);
+        
+        return true;
     }
     
-    // Create targets periodically during loading
+    // Create targets periodically - continues until preloader is gone
     const gameInterval = setInterval(() => {
-        if (document.getElementById('preloader') && !document.getElementById('preloader').classList.contains('fade-out')) {
-            createTarget();
-        } else {
+        if (!createTarget()) {
             clearInterval(gameInterval);
         }
     }, 600);
-    
-    // Stop game when preloader starts fading out
-    setTimeout(() => {
-        clearInterval(gameInterval);
-    }, 19500); // Stop 500ms before fade-out
 })();
 
 // --- Mobile hamburger menu: open/close + close on link tap ---
