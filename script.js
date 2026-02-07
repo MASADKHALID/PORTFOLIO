@@ -1,7 +1,37 @@
 // --- Preloader with Mini-Game ---
+// Start progress immediately when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const progressBar = document.querySelector('.progress-bar');
+    const progressText = document.getElementById('loadPercent');
+    const minGameTime = 20000;
+    
+    if (progressBar) {
+        progressBar.style.animation = 'none';
+        progressBar.style.transition = 'none';
+    }
+    if (progressText) {
+        progressText.textContent = '0%';
+    }
+
+    const startTime = performance.now();
+    const tick = (now) => {
+        const elapsed = now - startTime;
+        const percent = Math.min(100, Math.round((elapsed / minGameTime) * 100));
+        if (progressBar) {
+            progressBar.style.width = percent + '%';
+        }
+        if (progressText) {
+            progressText.textContent = percent + '%';
+        }
+        if (percent < 100) {
+            requestAnimationFrame(tick);
+        }
+    };
+    requestAnimationFrame(tick);
+});
+
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
-    const loadEndTime = Date.now();
     const minGameTime = 20000; // Minimum 20 seconds for game after page loads
     
     if(preloader) {

@@ -104,14 +104,23 @@
     height: 4px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 2px;
-    overflow: hidden;
+    overflow: visible;
+    position: relative;
 }
 
 .progress-bar {
     height: 100%;
     width: 0;
     background: linear-gradient(90deg, #7be8ff 0%, #00bcd4 50%, #ffc461 100%);
-    animation: progress 2s ease-in-out infinite;
+    transition: width 0.1s linear;
+}
+
+.progress-percent {
+  position: absolute;
+  right: 0;
+     top: -18px;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.5px;
 }
 
 @keyframes progress {
