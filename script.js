@@ -499,16 +499,39 @@ function downloadCV(role) {
 // --- Swipeable carousel with tap-to-reveal for mobile certificates/achievements ---
 (function(){
     const breakpoint = 800;
+    let lastWidth = window.innerWidth;
     
     function initCarousel(){
-        if(window.innerWidth > breakpoint) return;
+        const isMobile = window.innerWidth <= breakpoint;
+        const wasMobile = lastWidth <= breakpoint;
         
+        // Only reinitialize if crossing the breakpoint
+        if(isMobile === wasMobile && lastWidth !== window.innerWidth) {
+            return; // Same state, no need to reinit
+        }
+        
+        lastWidth = window.innerWidth;
         const containers = document.querySelectorAll('.fifthSection .cantainer');
         
         containers.forEach(container => {
-            // Remove existing carousel
+            // Remove existing carousel (cleanup)
             const existingCarousel = container.querySelector('.card-carousel');
-            if(existingCarousel) existingCarousel.remove();
+            if(existingCarousel) {
+                existingCarousel.remove();
+            }
+            
+            if(!isMobile) {
+                // Desktop: show original boxes
+                container.querySelectorAll('.box').forEach(box => {
+                    box.style.display = '';
+                });
+                return;
+            }
+            
+            // Mobile: hide boxes and create carousel
+            container.querySelectorAll('.box').forEach(box => {
+                box.style.display = 'none';
+            });
             
             const boxes = Array.from(container.querySelectorAll('.box'));
             if(boxes.length === 0) return;

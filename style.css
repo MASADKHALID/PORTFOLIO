@@ -2671,14 +2671,16 @@ nav li:first-child{
   outline-offset: 3px;
 }
 
+/* DUPLICATE SECTION - COMMENTED OUT FOR TESTING */
+/*
 /*certificates*/
-.section-heading {
+/*.section-heading {
     font-family: 'Poppins', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    color: #00bcd4; /* cyan accent to match tech pills */
-    font-size: 28px; /* consistent heading size */
+    color: #00bcd4;
+    font-size: 28px;
     font-weight: 700;
     text-align: center;
-    margin: 48px 0 8px 0; /* centered headings */
+    margin: 48px 0 8px 0;
     letter-spacing: 0.4px;
 }
 
@@ -2691,7 +2693,6 @@ nav li:first-child{
     border-radius: 2px;
 }
 
-/* Keep existing HTML using class="line" visually identical to .section-line */
 .line {
     height: 2px;
     width: 80%;
@@ -2701,17 +2702,13 @@ nav li:first-child{
     border-radius: 2px;
 }
 
-/* Mobile-friendly overrides: center headings and reduce left margin for small screens */
 @media (max-width: 800px) {
     section h1, section h2 { text-align: center; margin: 24px 0 8px 0; }
     .line, .section-line { width: calc(100% - 32px); margin: 8px auto 20px; }
 }
 
-/* Apply to common heading tags inside sections */
 section h1, section h2 { all: unset; }
 section h1, section h2 { display: block; font-family: 'Poppins', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color: #00bcd4; font-size: 28px; font-weight:700; text-align:center; margin:48px 0 8px 0; letter-spacing:0.4px; }
-
-/* global section heading styles apply to certificates */
 
 .fifthSection .cantainer {
     display: flex;
@@ -2735,17 +2732,17 @@ section h1, section h2 { display: block; font-family: 'Poppins', 'Inter', system
 .fifthSection .cantainer .box img {
     height: 100%;
     width: 100%;
-    object-fit: cover; /* ensure image fills box while preserving aspect */
+    object-fit: cover;
 }
 
 .fifthSection .cantainer .box .description {
     position: absolute;
-    inset: 0; /* top:0; right:0; bottom:0; left:0 */
+    inset: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transform: translateY(100%); /* start hidden below */
+    transform: translateY(100%);
     background-color: rgba(0, 0, 0, 0.72);
     color: #fff;
     padding: 18px;
@@ -2756,14 +2753,14 @@ section h1, section h2 { display: block; font-family: 'Poppins', 'Inter', system
 }
 
 .fifthSection .cantainer .box:hover .description {
-    transform: translateY(0); /* slide up into view */
+    transform: translateY(0);
 }
 
 @media (max-width: 800px) {
     .fifthSection .cantainer .box {
         width: 70%;
         height:400px;
-        min-height: 460px; /* increase mobile card height for better readability */
+        min-height: 460px;
         border-radius: 30px;
     }
     .fifthSection .cantainer{
@@ -2773,9 +2770,10 @@ section h1, section h2 { display: block; font-family: 'Poppins', 'Inter', system
     .fifthSection .cantainer .box p{
         font-size: 10px;
     }
-
-    
 }
+*/
+/* END DUPLICATE SECTION */
+
 /*tech stack*/
 
 .tech-section {
