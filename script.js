@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.querySelector('.progress-bar');
     const progressText = document.getElementById('loadPercent');
     const isFirstVisit = !localStorage.getItem('portfolioVisited');
-    const minGameTime = isFirstVisit ? 10000 : 10000; // 10 seconds after load
+    const minGameTime = isFirstVisit ? 5000 : 5000; // 5 seconds after load
     if (progressBar) {
         progressBar.style.animation = 'none';
         progressBar.style.transition = 'none';
