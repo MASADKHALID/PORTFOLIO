@@ -570,10 +570,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function downloadCV(role) {
     // Map roles to file names
     const fileMap = {
-        'data-analyst': 'cv/Muhammad_Asad_Khalid_JR_Data_Engineer_&_Analyst.pdf',
-        'data-engineer': 'cv/Muhammad_Asad_Khalid_JR_Data_Engineer_&_Analyst.pdf',
+        'data-analyst': 'cv/Muhammad_Asad_Khalid_JR_Data_Engineer.pdf',
+        'data-engineer': 'cv/Muhammad_Asad_Khalid_JR_Data_Analyst.pdf',
         'sqa': 'cv/CV_SQA.pdf',
-        'software-engineer': 'cv/Muhammad_Asad_Khalid_Software_Engineer.pdf'
+        'software-engineer': 'cv/Muhammad_Asad_Khalid_Software_Engineer.pdf',
+        'scholarship-cv': 'cv/scholarship _cv_Muhammad_Asad_Khalid_cv.pdf'
     };
 
     const fileName = fileMap[role];
