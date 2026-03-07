@@ -1,4 +1,5 @@
-// --- Preloader with Mini-Game ---
+// --- Preloader with Mini-Game (TEMPORARILY DISABLED) --- 
+/*
 // Start progress immediately when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.querySelector('.progress-bar');
@@ -98,6 +99,7 @@ window.addEventListener('load', () => {
         }
     }, 600);
 })();
+*/
 
 // --- Mobile hamburger menu: open/close + close on link tap ---
 document.addEventListener('DOMContentLoaded', () => {
